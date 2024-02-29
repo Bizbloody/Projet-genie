@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f9f9f9;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 100;
+
+}
+
+.logo {
+    font-size: 2rem;
+    color: #359381;
+    pointer-events: none;
+    margin-right: 60vh;
+}
+
+.nav a{
+    text-decoration: none;
+    color: #359381;
+    padding: 6px 15px;
+    border-radius: 20px;
+    margin: 0 10px;
+    font-weight: 600;
+}
+
+.nav a:hover, .nav a.active{
+    background-color: #359381;
+    color: #fff;
+
+}
+
+.parallax{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#text{
+    position: absolute;
+    font-size: 6em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.parallax img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.sec {
+    position: relative;
+    background: #003329;
+    padding: 100px;
+    margin-top: 125px;
+}
+
+.sec h2{
+    font-size: 3em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.sec p{
+    font-size: 1em;
+    color: #fff;
+    font-weight: 300;
+}
+
+
+
+/*Formulaire de contact*/
+.formulaire{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    align-items: center;
+}
+
+.input {
+    margin-block: 0.75%;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+    transition: 0.3s;
+    width: 10%;
+    font-family: 'Gill Sans', sans-serif;
+    width:fit-content;
+}
+   
+.input:focus {
+    outline-color: #2D3047;
+    background: #e8e8e8;
+    box-shadow: inset 20px 20px 60px #c5c5c5,
+           inset -20px -20px 60px #FFC000;
+    transition: 0.3s;
+}
+
+/*Se souvenir de moi*/
+/* Hide the default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.container {
+    margin-top: 2%;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 25px;
+    user-select: none;
+    display: flex;
+    align-items: center ;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container:hover{
+    transition-duration:0.2;
+    opacity: 80%;
+}
+/* Create a custom checkbox */
+.checkmark {
+    position: relative;
+    display: flex;
+    top: 0;
+    left: 0;
+    height: 1.3em;
+    width: 1.3em;
+    background:#2D3047;
+    border-radius: 10px;
+    transition: all 0.1s;
+    --spread: 10px;
+    margin-right: 1%;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background: #2D3047;
+    box-shadow: -3px -3px var(--spread) 0px #FFC000, 3px 3px var(--spread) 0px #2D3047;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid #f0f0f0;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+}
+
+
+
+/*Button Valider*/
+.butVal{
+    margin-top: 3.5%;
+    left: 50%;
+    margin-bottom: 3.5%;
+}
+
+button {
+    width: fit-content;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    color: #fff;
+    font-size: 115%;
+    font-family: 'Gill Sans', sans-serif;
+    border-radius: 1rem;
+    border: none;
+    position: relative;
+    background: #2D3047;
+    transition: 0.1s;
+}
+  
+button:hover{
+    transition-duration: 0.2;
+    opacity: 99%;
+}
+
+button:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  #FFC000 17.8%, #2D3047 100.2% );
+    filter: blur(15px);
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+  
+button:active {
+    transform: scale(0.9) rotate(3deg);
+    background: radial-gradient(circle farthest-corner at 10% 20%,  #FFC000 17.8%,  #2D3047 100.2% );
+    transition: 0.5s;
+}
+
+/*Mot de passe oublié*/
+.plusmdp{
+    color: grey;
+    font-size: 110%;
+    text-decoration: none;
+    font-family: 'Gill Sans', sans-serif;
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+/*Inscription*/
+.pascompte{
+    color: grey;
+    font-size: 110%;
+    text-decoration: none;
+    font-family: 'Gill Sans', sans-serif;
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+}
