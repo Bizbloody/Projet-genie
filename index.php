@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_status() === PHP_SESSION_ACTIVE ?: session_start();
 
 // Connexion à la base de données
 $servername = "localhost";
@@ -20,7 +20,7 @@ if (isset($_POST["associations"]) && isset($_POST["mdp"])) {
     $mdp = $_POST["mdp"];
 
     // Récupération du mot de passe haché et de idRPPS depuis la base de données
-    $sql = "SELECT mdp, pseudo FROM associations WHERE pseudo = ?";
+    $sql = "SELECT mdp, pseudo, ID FROM associations WHERE pseudo = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $pseudo1);
     $stmt->execute();
@@ -30,11 +30,14 @@ if (isset($_POST["associations"]) && isset($_POST["mdp"])) {
         $row = $result->fetch_assoc();
         $hashedPassword = $row["mdp"];
         $pseudo2 = $row["pseudo"];
+        $ID = $row["ID"];
 
         // Vérification du mot de passe
         if (password_verify($mdp, $hashedPassword)) {
             // Connexion réussie
             $_SESSION["pseudo"] = $pseudo2;
+            $_SESSION["ID"] = $ID;
+
 
             // Gestion du cookie "Se souvenir de moi"
             if (isset($_POST['remember'])) {
@@ -42,7 +45,7 @@ if (isset($_POST["associations"]) && isset($_POST["mdp"])) {
                 setcookie('remember_me', $pseudo2, time() + (7 * 24 * 60 * 60), '/');
             }
 
-            header("Location: choix.html");
+            header("Location: test.html");
             exit();
         } else {
             // Mauvaise combinaison NomAssociation/mot de passe
