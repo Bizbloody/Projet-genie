@@ -69,8 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   });
 
-  function fetchAvailablePlaces(startDate, endDate) {
-    // Use AJAX, fetch API, or any other method to fetch available places from the server
+ /* function fetchAvailablePlaces(startDate, endDate) {
     return new Promise((resolve, reject) => {
       // Simulated example - replace with your actual implementation
       const availablePlaces = [
@@ -80,6 +79,24 @@ document.addEventListener('DOMContentLoaded', function() {
       ];
       resolve(availablePlaces);
       return;
+    });
+  } */
+
+  function fetchAvailablePlaces() {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'test_php.php', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            console.log(xhr); // Log the JSON response
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject(xhr.statusText);
+          }
+        }
+      };
+      xhr.send();
     });
   }
 
