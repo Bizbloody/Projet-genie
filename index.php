@@ -2,10 +2,12 @@
 session_status() === PHP_SESSION_ACTIVE ?: session_start();
 
 // Connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "projet";
+$env = parse_ini_file('.env');
+
+$servername = $env["SERVER_NAME"];
+$username = $env["USERNAME"];
+$password = $env["PASSWORD"];
+$dbname = $env["DB_NAME"];
 
 
 

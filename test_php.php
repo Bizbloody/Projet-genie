@@ -22,10 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $end = $reservation_data->end;
 
       
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "projet";
+        $env = parse_ini_file('.env');
+
+        $servername = $env["SERVER_NAME"];
+        $username = $env["USERNAME"];
+        $password = $env["PASSWORD"];
+        $dbname = $env["DB_NAME"];
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
@@ -37,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $lieu = 'test';
         $status = 'Actif';
 
-        $stmt1 = $conn->prepare("INSERT INTO reservation (ID_association, ID_lieu, nom, date_debut, date_fin, status) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt1->bind_param("ssssss", $ID, $lieu, $name, $start, $end, $status);
+        $stmt1 = $conn->prepare("INSERT INTO reservation (ID_association, ID_lieu, date_debut, date_fin, status) VALUES (?, ?, ?, ?, ?)");
+        $stmt1->bind_param("sssss", $ID, $lieu, $start, $end, $status);
         $stmt1->execute();
         $stmt1->close();
 
@@ -68,22 +70,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo 'console.log("End Date: ' . $end . '");';
         echo '</script>';
       
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "projet";
+        $env = parse_ini_file('.env');
+
+        $servername = $env["SERVER_NAME"];
+        $username = $env["USERNAME"];
+        $password = $env["PASSWORD"];
+        $dbname = $env["DB_NAME"];
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt2 = $conn->prepare("SELECT l.nom FROM lieu as l INNER JOIN reservation as r on r.ID_lieu = l.ID WHERE r.date_debut >= ? and r.date_fin <= ?");
-        $stmt2->bind_param("ss", $start, $end);
-        $stmt2->execute();
-        $stmt2->bind_result($result);
+        try {
+            $stmt2 = $conn->prepare("SELECT l.ID, l.nom FROM lieu as l INNER JOIN reservation as r on r.ID_lieu = l.ID WHERE r.date_debut >= ? and r.date_fin <= ?");
+            $stmt2->bind_param("ss", $start, $end);
+            $stmt2->execute();
+            $stmt2->bind_result($result);
+        } catch(Exception $e) {
+            var_dump($e);
+        }
+        
 
-        echo "$result";
+        // echo "$result";
+
+        var_dump("$result");
+        exit();
 
         if ($result->num_rows > 0) {
             // Output data of each row
