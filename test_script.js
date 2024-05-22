@@ -1,72 +1,77 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      selectable: true,
-      select: function(info) {
-         // Prompt the user to enter the reservation name
-    const reservationName = prompt('Enter the name of the reservation:');
 
-    if (reservationName === null) {
-        return;
-  } else {
 
-    fetchAvailablePlaces(info.startStr, info.endStr)
-    .then(places => {
-      // Display available places in a modal
-      displayAvailablePlacesInModal(places, reservationName, info);
-    })
-    .catch(error => {
-      console.error('Error fetching available places:', error);
-    });
+console.log('test_script.js is loaded'); // Add this line
 
-    const selectedEvent = {
-      title: reservationName,
-      start: info.startStr,
-      end: info.endStr,
-      rendering: 'background', // Render as a background event
-      backgroundColor: 'yellow', // Set the background color
-      textColor: 'black'
+document.addEventListener('DOMContentLoaded', 
+function() {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    selectable: true,
+    select: function(info) {  
+        // Prompt the user to enter the reservation name
+  const reservationName = prompt('Enter the name of the reservation:');
 
-  };
+  if (reservationName === null) {
+      return;
+  }else{
+    bookIfAvailable(info.startStr, info.endStr, resName = reservationName)
+  //   fetchAvailablePlaces(info.startStr, info.endStr)
+  //   .then(places => {
+  //     // Display available places in a modal
+  //     displayAvailablePlacesInModal(places, reservationName, info);
+  //   })
+  //   .catch(error => {
+  //     console.error('Error fetching available places:', error);
+  //   });
 
-    const reservationData = {
-      name: reservationName,
-      start: info.startStr,
-      end: info.endStr
-  };
+  //   const selectedEvent = {
+  //     title: reservationName,
+  //     start: info.startStr,
+  //     end: info.endStr,
+  //     rendering: 'background', // Render as a background event
+  //     backgroundColor: 'yellow', // Set the background color
+  //     textColor: 'black'
 
-  saveReservation(reservationData);
+  //   };
+
+  //   const reservationData = {
+  //     name: reservationName,
+  //     start: info.startStr,
+  //     end: info.endStr
+  //   };
+
+  // saveReservation(reservationData);
 
   }
 
   // Render the selected event on the calendar
-  calendar.addEvent(selectedEvent);
+  //calendar.addEvent(selectedEvent);
 },
     })
     calendar.render();
 
     // Function to send reservation data to the server
-    function saveReservation(reservationData) {
-      // Send reservation data to the server using AJAX
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'test_php.php', true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.onload = function() {
-          if (xhr.status === 200) {
-              // Handle successful response from the server
-              console.log('Reservation saved successfully.');
-          } else {
-              // Handle error response from the server
-              console.error('Error saving reservation:', xhr.statusText);
-          }
-      };
-      xhr.onerror = function() {
-          // Handle connection errors
-          console.error('Error sending request to the server.');
-      };
-      xhr.send(JSON.stringify(reservationData));
-  }
+    // function saveReservation(reservationData) {
+    //   // Send reservation data to the server using AJAX
+    //   const xhr = new XMLHttpRequest();
+    //   xhr.open('POST', 'test_php.php', true);
+    //   xhr.setRequestHeader('Content-Type', 'application/json');
+    //   xhr.onload = function() {
+    //       if (xhr.status === 200) {
+    //           // Handle successful response from the server
+    //           console.log('Reservation saved successfully.');
+    //       } else {
+    //           // Handle error response from the server
+    //           console.error('Error saving reservation:', xhr.statusText);
+    //       }
+    //   };
+    //   xhr.onerror = function() {
+    //       // Handle connection errors
+    //       console.error('Error sending request to the server.');
+    //   };
+    //   xhr.send(JSON.stringify(reservationData));
+    // }
   });
 
  /* function fetchAvailablePlaces(startDate, endDate) {
@@ -82,22 +87,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   } */
 
-  function fetchAvailablePlaces() {
-    return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', 'test_php.php', true);
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            console.log(xhr); // Log the JSON response
-            resolve(JSON.parse(xhr.responseText));
-          } else {
-            reject(xhr.statusText);
-          }
-        }
-      };
-      xhr.send();
-    });
+  
+  const bookIfAvailable = (start = "", end = "", lieu = "", resName = "") => {
+
+    const params = new URLSearchParams()
+    params.set("start", start)
+    params.set("end", end)
+    params.set("lieu",lieu)
+
+
+    const encodedUrl = "getBooking.php?" + params.toString()
+    console.log(encodedUrl)
+
+    return fetch(encodedUrl)
+    .then(result => result.json())
+    .then(data => {
+      console.log(data)
+      const info =   data.map(elem => elem.nom + ", ");
+      console.log(data)
+      alert("Les salles suivantes sont occupée :" + data.map(elem => " "+elem.nom))
+
+      const postUrl = "postBooking.php"
+
+      const body = {
+        name : resName,  
+        start : start,
+        end : end,
+        lieuId : 1      //todo change lieuId with the correct place for the reservation
+      }
+
+      return fetch(postUrl, {
+        method : "POST",
+        body: JSON.stringify(body),
+      })
+      .then(console.log("Reservation is saved !"))
+
+      
+    })
+    
   }
 
   function displayAvailablePlacesInModal(places, reservationName, info) {

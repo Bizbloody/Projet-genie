@@ -9,24 +9,26 @@
     <script src='fullcalendar/core/index.global.js'></script>
     <script src='fullcalendar/daygrid/index.global.js'></script>
     <script src='fullcalendar/interaction/index.global.js'></script>
+    
     <link rel="stylesheet" href="test-style.css">
 </head>
 <body>
     <h1>Réservation de salle</h1>
     <div id="calendar"></div>
-    <form id="reservationForm" action="test_php.php" method="post">
+    <form id="reservationForm">
         <input type="hidden" id="selectedDate" name="selectedDate">
         <input type="submit" value="Réserver">
     </form>
 
     <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h3>Select a place:</h3>
-          <ul id="placeList"></ul>
-        </div>
-      </div>      
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Select a place:</h3>
+        <ul id="placeList"></ul>
+      </div>
+    </div>
+    <script src='test_script.js'></script>
+   
 
-    <script src="test_script.js"></script>
 </body>
 </html>
