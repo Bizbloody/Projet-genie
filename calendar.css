@@ -1,0 +1,39 @@
+@import "colors.css";
+@import url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css');
+
+/* calendar day element*/
+.fc-day, .fc-widget-content {
+    background-color: #ffffff;
+}
+
+/* all the calendar elements*/
+.fc {
+    font-family: Arial, sans-serif !important;
+}
+
+/* button previous/next month and today button*/
+.fc-button {
+    background-color: var(--amaranth-purple) !important;
+    color: white !important;
+    border: none !important;
+    text-align: center !important;
+    padding: 5px 10px !important;
+    height: 1% !important;
+    width: 45% !important;
+}
+
+/* space between today's button and next/previous month's button*/
+.fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+    margin-left: 13px !important;
+}
+
+/* background of the event selected */
+.fc-highlight{
+    background: var(--puce) !important;
+    opacity:.3 !important;
+}
+
+/* actual day in the calendar*/
+.fc-day-today {
+    background-color: var(--old-lace) !important;
+}
