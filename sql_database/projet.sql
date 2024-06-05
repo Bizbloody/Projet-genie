@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 24, 2024 at 09:36 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Hôte : 127.0.0.1
+-- Généré le : mer. 05 juin 2024 à 09:27
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `projet`
+-- Base de données : `projet`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `associations`
+-- Structure de la table `associations`
 --
 
 CREATE TABLE `associations` (
@@ -35,7 +35,7 @@ CREATE TABLE `associations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `associations`
+-- Déchargement des données de la table `associations`
 --
 
 INSERT INTO `associations` (`ID`, `nom`, `pseudo`, `mdp`) VALUES
@@ -46,20 +46,32 @@ INSERT INTO `associations` (`ID`, `nom`, `pseudo`, `mdp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lieu`
+-- Structure de la table `lieu`
 --
 
 CREATE TABLE `lieu` (
   `ID` tinyint(30) NOT NULL,
   `ID_association` tinyint(30) DEFAULT NULL,
   `nom` text NOT NULL,
-  `NDC_NDL` varchar(3) NOT NULL
+  `NDC_NDL` varchar(3) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `taille` varchar(255) NOT NULL,
+  `description_taille` varchar(200) DEFAULT NULL,
+  `etage` int(11) NOT NULL,
+  `description_lieu` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `lieu`
+--
+
+INSERT INTO `lieu` (`ID`, `ID_association`, `nom`, `NDC_NDL`, `type`, `taille`, `description_taille`, `etage`, `description_lieu`) VALUES
+(1, 2, 'Stockage 1', 'NDL', 'armoire', 'Grand', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservation`
+-- Structure de la table `reservation`
 --
 
 CREATE TABLE `reservation` (
@@ -72,24 +84,24 @@ CREATE TABLE `reservation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `associations`
+-- Index pour la table `associations`
 --
 ALTER TABLE `associations`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `lieu`
+-- Index pour la table `lieu`
 --
 ALTER TABLE `lieu`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `ID_association` (`ID_association`);
 
 --
--- Indexes for table `reservation`
+-- Index pour la table `reservation`
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`ID`),
@@ -97,39 +109,39 @@ ALTER TABLE `reservation`
   ADD KEY `ID_lieu` (`ID_lieu`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `associations`
+-- AUTO_INCREMENT pour la table `associations`
 --
 ALTER TABLE `associations`
   MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `lieu`
+-- AUTO_INCREMENT pour la table `lieu`
 --
 ALTER TABLE `lieu`
-  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `reservation`
+-- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `lieu`
+-- Contraintes pour la table `lieu`
 --
 ALTER TABLE `lieu`
   ADD CONSTRAINT `lieu_ibfk_1` FOREIGN KEY (`ID_association`) REFERENCES `associations` (`ID`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Constraints for table `reservation`
+-- Contraintes pour la table `reservation`
 --
 ALTER TABLE `reservation`
   ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`ID_lieu`) REFERENCES `lieu` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
