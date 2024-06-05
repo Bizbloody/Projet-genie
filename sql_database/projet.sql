@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 05 juin 2024 à 09:27
+-- Généré le : mer. 05 juin 2024 à 10:15
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.1.12
 
@@ -55,18 +55,19 @@ CREATE TABLE `lieu` (
   `nom` text NOT NULL,
   `NDC_NDL` varchar(3) NOT NULL,
   `type` varchar(255) NOT NULL,
-  `taille` varchar(255) NOT NULL,
-  `description_taille` varchar(200) DEFAULT NULL,
+  `profondeur` int(11) NOT NULL,
   `etage` int(11) NOT NULL,
-  `description_lieu` varchar(300) DEFAULT NULL
+  `description_lieu` varchar(300) DEFAULT NULL,
+  `largeur` int(11) NOT NULL,
+  `longueur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `lieu`
 --
 
-INSERT INTO `lieu` (`ID`, `ID_association`, `nom`, `NDC_NDL`, `type`, `taille`, `description_taille`, `etage`, `description_lieu`) VALUES
-(1, 2, 'Stockage 1', 'NDL', 'armoire', 'Grand', NULL, 1, NULL);
+INSERT INTO `lieu` (`ID`, `ID_association`, `nom`, `NDC_NDL`, `type`, `profondeur`, `etage`, `description_lieu`, `largeur`, `longueur`) VALUES
+(1, 2, 'Stockage 1', 'NDL', 'armoire', 0, 1, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
