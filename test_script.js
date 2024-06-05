@@ -5,6 +5,14 @@ console.log('test_script.js is loaded'); // Add this line
 document.addEventListener('DOMContentLoaded', 
 function() {
   var calendarEl = document.getElementById('calendar');
+
+  var lieuList = document.getElementById('selectedStorage');
+
+
+  
+
+ 
+  
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     selectable: true,
@@ -39,6 +47,10 @@ function() {
       return;
   }else{
     bookIfAvailable(info.startStr, info.endStr,resName = reservationName)
+      .then(() => {
+        const lieuId = lieuList.selectedOptions[0].id
+        renderCalendarEventsFromLieuId(calendar,lieuId)
+      })
   //   fetchAvailablePlaces(info.startStr, info.endStr)
   //   .then(places => {
   //     // Display available places in a modal
@@ -70,9 +82,25 @@ function() {
 
   // Render the selected event on the calendar
   //calendar.addEvent(selectedEvent);
+
 },
+  })
+
+    lieuList.addEventListener('change', 
+    function(event) {
+      let selectedOption = event.target.selectedOptions[0];
+      renderCalendarEventsFromLieuId(calendar,selectedOption.id)
     })
+  
+    getAllLieuAndPolulationLieuList(lieuList)
+    .then(() => {
+      const lieuId = lieuList.selectedOptions[0].id
+      renderCalendarEventsFromLieuId(calendar,lieuId)
+    })
+    
     calendar.render();
+
+
 
     // Function to send reservation data to the server
     // function saveReservation(reservationData) {
@@ -120,8 +148,7 @@ function() {
 
 
     const encodedUrl = "getBooking.php?" + params.toString()
-    console.log(resName)
-
+    
     return fetch(encodedUrl)
     .then(result => result.json())
     .then(data => {
@@ -148,6 +175,60 @@ function() {
       
     })
     
+  }
+
+  const getReservationsFromLieuId = (lieuId) => {
+
+    const params = new URLSearchParams()
+    params.set("lieuId",lieuId)
+
+      const encodedUrl = "getReservationsFromLieu.php ?"+params.toString()
+      return fetch(encodedUrl)
+        .then(result => result.json());
+  }
+
+  const getAllLieuAndPolulationLieuList = (lieuList) => {
+      const url = "getAllLieu.php";
+
+      return fetch(url)
+        .then(result => result.json())
+        .then(data => {
+
+          data.map(element => {
+            const option = document.createElement('option')
+            option.setAttribute("id",element.ID)
+            option.setAttribute("value",element.nom)
+            option.innerHTML = element.nom;
+            lieuList.appendChild(option);
+          })
+          
+          
+        })
+        
+  }
+
+
+  const renderCalendarEventsFromLieuId = (calendar,lieuId) => {
+    calendar.removeAllEvents();
+
+    getReservationsFromLieuId(lieuId)
+    .then(data => {
+      data.map(element => {
+        const event = {
+          title: element.reservation_name,
+          start: element.date_debut,
+          end: element.date_fin,
+          rendering: 'background', // Render as a background event
+          backgroundColor: 'yellow', // Set the background color
+          textColor: 'black'
+        }
+
+        calendar.addEvent(event)
+      })
+    })
+
+    
+   
   }
 
   function displayAvailablePlacesInModal(places, reservationName, info) {
