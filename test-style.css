@@ -1,18 +1,61 @@
+@import "colors.css";
+
 /* Styles à personnaliser selon vos besoins */
 body {
     font-family: Arial, sans-serif;
+    background: var(--pale-dogwood);
+    color: var(--gunmetal);
+    padding: 1% 8%;
 }
 
 #calendar {
-    margin-bottom: 20px;
+    margin: 1% 5% 0%;
+}
+
+form#reservationForm {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0% 5%;
+}
+
+.spaceBetweenButtons {
+    width: 13px;
+}
+
+select[type="storage"] {
+    padding: 2px 0.5%;
+    background-color: var(--old-lace);
+    color: var(--gunmetal);
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25em;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    width: 98px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+select[type="storage"]:focus {
+    outline: none;
+}
+
+option {
+    color: var(--gunmetal);
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007bff;
+    padding: 8px 2%;
+    background-color: var(--amaranth-purple);
     color: #fff;
     border: none;
     cursor: pointer;
+    border-radius: 0.25em;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    width: 108px;
 }
 
 .custom-highlight {
@@ -55,3 +98,25 @@ input[type="submit"] {
     text-decoration: none;
     cursor: pointer;
   }
+
+.link{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0% 5% -80px 5%;
+}
+
+#button_list{
+    color: white;
+    background-color: var(--amaranth-purple);
+    border: none;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    width: 120px;
+    padding:4px 2px;
+    border-radius: 0.25em;
+    text-align: center;
+    display: inline-block;
+    margin-right: 232px;
+}
