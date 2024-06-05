@@ -31,5 +31,6 @@
         }else{
             echo json_encode(array());
         }
+        $conn->close();
     }
 ?>

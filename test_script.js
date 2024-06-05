@@ -34,11 +34,11 @@ function() {
     select: function(info) {  
         // Prompt the user to enter the reservation name
   const reservationName = prompt('Enter the name of the reservation:'); 
-
+  console.log("Nom de la reservation : "+reservationName);
   if (reservationName === null) {
       return;
   }else{
-    bookIfAvailable(info.startStr, info.endStr, resName = reservationName)
+    bookIfAvailable(info.startStr, info.endStr,resName = reservationName)
   //   fetchAvailablePlaces(info.startStr, info.endStr)
   //   .then(places => {
   //     // Display available places in a modal
@@ -111,7 +111,7 @@ function() {
   } */
 
 
-  const bookIfAvailable = (start = "", end = "", lieu = "", resName = "") => {
+  const bookIfAvailable = (start = "", end = "",resName = "", lieu = "") => {
 
     const params = new URLSearchParams()
     params.set("start", start)
@@ -120,7 +120,7 @@ function() {
 
 
     const encodedUrl = "getBooking.php?" + params.toString()
-    console.log(encodedUrl)
+    console.log(resName)
 
     return fetch(encodedUrl)
     .then(result => result.json())

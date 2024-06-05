@@ -34,14 +34,7 @@ CREATE TABLE `associations` (
   `mdp` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `associations`
---
 
-INSERT INTO `associations` (`ID`, `nom`, `pseudo`, `mdp`) VALUES
-(2, 'bizou', 'bibi', ''),
-(3, 'blabla', 'blabla', '$2y$10$Pz79GPpyyc9nkhtjsBhcHeD.CHOCBZ747fIaUZhE6l3rY7cA3IUWW'),
-(4, 'blabla2', 'blabla2', '$2y$10$kkoHHKAISfPojLEUMORy0u4RtdQYLDO0OXlJU66NQM6fJ5MtRqSAG');
 
 -- --------------------------------------------------------
 
@@ -65,14 +58,6 @@ CREATE TABLE `lieu` (
 -- Déchargement des données de la table `lieu`
 --
 
-INSERT INTO `lieu` (`ID`, `ID_association`, `nom`, `NDC_NDL`, `type`, `taille`, `description_taille`, `etage`, `description_lieu`) VALUES
-(1, 2, 'Stockage 1', 'NDL', 'armoire', 'Grand', NULL, 1, NULL);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `reservation`
---
 
 CREATE TABLE `reservation` (
   `ID` tinyint(30) NOT NULL,
@@ -80,7 +65,8 @@ CREATE TABLE `reservation` (
   `ID_lieu` tinyint(30) NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
-  `status` tinytext NOT NULL
+  `status` tinytext NOT NULL,
+  `reservation_name` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
