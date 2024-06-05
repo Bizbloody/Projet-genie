@@ -34,7 +34,14 @@ CREATE TABLE `associations` (
   `mdp` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `associations`
+--
 
+INSERT INTO `associations` (`ID`, `nom`, `pseudo`, `mdp`) VALUES
+(2, 'bizou', 'bibi', ''),
+(3, 'blabla', 'blabla', '$2y$10$Pz79GPpyyc9nkhtjsBhcHeD.CHOCBZ747fIaUZhE6l3rY7cA3IUWW'),
+(4, 'blabla2', 'blabla2', '$2y$10$kkoHHKAISfPojLEUMORy0u4RtdQYLDO0OXlJU66NQM6fJ5MtRqSAG');
 
 -- --------------------------------------------------------
 
@@ -48,16 +55,25 @@ CREATE TABLE `lieu` (
   `nom` text NOT NULL,
   `NDC_NDL` varchar(3) NOT NULL,
   `type` varchar(255) NOT NULL,
-  `taille` varchar(255) NOT NULL,
-  `description_taille` varchar(200) DEFAULT NULL,
+  `profondeur` int(11) NOT NULL,
   `etage` int(11) NOT NULL,
-  `description_lieu` varchar(300) DEFAULT NULL
+  `description_lieu` varchar(300) DEFAULT NULL,
+  `largeur` int(11) NOT NULL,
+  `longueur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `lieu`
 --
 
+INSERT INTO `lieu` (`ID`, `ID_association`, `nom`, `NDC_NDL`, `type`, `profondeur`, `etage`, `description_lieu`, `largeur`, `longueur`) VALUES
+(1, 2, 'Stockage 1', 'NDL', 'Armoire', 0, 1, NULL, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reservation`
+--
 
 CREATE TABLE `reservation` (
   `ID` tinyint(30) NOT NULL,
