@@ -1,0 +1,54 @@
+@import 'colors.css';
+
+body{
+    background-color: var(--pale-dogwood );
+    color: var(--gunmetal)
+}
+
+.bandeau{
+    width: 100%;
+    background-color: var(--amaranth-purple);
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.storage{
+    padding: 1% 2%;
+    border: 1px solid var(--gunmetal);
+    width: 55%;
+    margin: 1%;
+    background-color: white;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.name{
+    font-weight: 200;
+    font-size: 30px;
+}
+
+.details{
+    padding-left: 3%;
+    padding-top: 2%;
+}
+
+.separator {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid var(--gunmetal);
+}
+
+
+.size, .place {
+    display: flex;
+    gap: 20%;
+}
