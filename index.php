@@ -45,6 +45,7 @@ if (isset($_POST["associations"]) && isset($_POST["mdp"])) {
             if (isset($_POST['remember'])) {
                 // Création du cookie avec une durée de validité d'une semaine
                 setcookie('remember_me', $pseudo2, time() + (7 * 24 * 60 * 60), '/');
+                setcookie('asso_id', $ID, time() + (7 * 24 * 60 * 60), '/');
             }
 
             header("Location: test.html");

@@ -33,7 +33,7 @@ function() {
     },
     select: function(info) {  
         // Prompt the user to enter the reservation name
-  const reservationName = prompt('Enter the name of the reservation:');
+  const reservationName = prompt('Enter the name of the reservation:'); 
 
   if (reservationName === null) {
       return;
@@ -110,7 +110,7 @@ function() {
     });
   } */
 
-  
+
   const bookIfAvailable = (start = "", end = "", lieu = "", resName = "") => {
 
     const params = new URLSearchParams()

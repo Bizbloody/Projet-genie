@@ -17,7 +17,7 @@
             $start = $reservation_data->start;
             $end = $reservation_data->end;
             $lieuId = $reservation_data -> lieuId;
-            $assoId = $reservation_data -> assoId;
+           
 
             $env = parse_ini_file('.env');
 
@@ -31,8 +31,8 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            //$ID = $_SESSION['ID'];
-            $ID = 5;
+            $ID = $_SESSION['ID'];
+            //$ID = 5;
 
            
             $status = 'Actif';
