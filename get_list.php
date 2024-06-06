@@ -1,4 +1,7 @@
 <?php
+
+include 'delete_storage.php';
+
 $env = parse_ini_file('.env');
 
 $servername = $env["SERVER_NAME"];
@@ -11,7 +14,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 function get_list($c){
     $stmt = $c->prepare("SELECT * FROM lieu");
 
@@ -33,5 +35,13 @@ function get_list($c){
 
 $storages = get_list($conn);
 
+if (isset($_POST['delete_button'])) {
+    if(isset($_POST['id_to_delete'])) {
+        $id_to_delete = $_POST['id_to_delete'];
+        delete_lieu_by_id($conn, $id_to_delete);
+    }
+}
+
+$conn->close();
 
 include './list.html';
