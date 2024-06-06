@@ -10,7 +10,7 @@
 
 <header class="head">
   <div class="c1">
-    <div class="nosproduits">Stock ISEP</div>
+    <div class="logo">Stock ISEP</div>
   </div>
 
 </header>
@@ -22,7 +22,13 @@
   <div class="conteneur2">
     <?php foreach ($storages as $storage): ?>
     <div class="storage">
-      <div class="name"><?php echo $storage['nom']; ?></div>
+      <div class="header_box">
+        <div class="name"><?php echo $storage['nom']; ?></div>
+        <form action="" method="post">
+          <input type="hidden" name="id_to_delete" value="<?php echo $storage['ID']?>">
+          <button type="submit" name="delete_button">Supprimer</button>
+        </form>
+      </div>
       <hr class="separator">
       <div class="details">
         <div class="asso"><strong>Association propriétaire : </strong><?php echo $storage['ID_association']; ?></div>
@@ -39,6 +45,8 @@
     </div>
     <?php endforeach; ?>
   </div>
+  <a id="add_storage_button" href="new_storage.html">Ajouter un espace</a>
+
 </div>
 
 

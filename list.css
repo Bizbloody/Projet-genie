@@ -34,6 +34,23 @@ body{
 .name{
     font-weight: 200;
     font-size: 30px;
+    flex-grow: 1;
+}
+
+.header_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background-color: var(--amaranth-purple);
+    border: none;
+    color: white;
+    padding: 10%;
+}
+form{
+    margin-right: 1%;
 }
 
 .details{
