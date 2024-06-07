@@ -14,19 +14,16 @@ function validateForm() {
 
     let valid = true;
 
-    // Validation for name: alphanumeric, 3 to 50 characters, required
     if (!/^[a-zA-Z0-9\s]{3,50}$/.test(name)) {
         document.getElementById('nameError').textContent = "Le nom doit être alphanumérique et contenir entre 3 et 50 caractères.";
         valid = false;
     }
 
-    // Validation for type: required
     if (type === "") {
         document.getElementById('typeError').textContent = "Le type de rangement est obligatoire.";
         valid = false;
     }
 
-    // Validation for width, length, and deepness: integer, in cm
     if (!/^\d+$/.test(width)) {
         document.getElementById('widthError').textContent = "La largeur doit être un entier en cm.";
         valid = false;
@@ -55,14 +52,6 @@ function validateForm() {
         valid = false;
     }
 
-
-    // Validation for floor: integer between -1 and 6, or "sous sol"
-    if (!/^(-1|0|1|2|3|4|5|6|sous sol)$/.test(floor)) {
-        document.getElementById('floorError').textContent = "L'étage doit être compris entre -1 et 6 ou 'sous sol'.";
-        valid = false;
-    }
-
-    // Validation for description: alphanumeric, 3 to 50 characters
     if (description != "" && !/^[a-zA-Z0-9\s]{3,50}$/.test(description)) {
         document.getElementById('descriptionError').textContent = "La description doit être alphanumérique et contenir entre 3 et 50 caractères.";
         valid = false;
@@ -75,8 +64,13 @@ function updateFloorOptions() {
     const campus = document.getElementById('campus').value;
     const floorSelect = document.getElementById('floor');
 
-    // Clear existing options
-    floorSelect.innerHTML = '<option value="">Sélectionnez un étage</option>';
+    floorSelect.innerHTML = '';
+
+    // Ajouter une option par défaut
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Sélectionnez un étage';
+    floorSelect.appendChild(defaultOption);
 
     if (campus === "NDC") {
         for (let i = -1; i <= 6; i++) {
