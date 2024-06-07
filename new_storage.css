@@ -42,11 +42,22 @@ body {
     align-items: center;
 }
 
-button {
+.buttons {
+    text-align: center;
+}
+
+.buttons input, .buttons a {
+    display: inline-block;
+    width: auto;
+    margin: 1%;
+    text-align: center;
     background-color: var(--amaranth-purple);
-    border: none;
     color: white;
-    padding: 10%;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
 }
 
 .details {
@@ -86,23 +97,11 @@ label {
     width: 50%;
 }
 
-.size input{
+.size input, .place input, .place select, .size select {
     width: 30%;
+    border: none;
+    border-bottom: 1px solid var(--gunmetal);
+    padding: 5px;
+    outline: none;
+    background-color: transparent;
 }
-
-.place select {
-    width:100%;
-}
-
-#add_storage_button {
-    display: block;
-    width: fit-content;
-    margin: 20px auto;
-    text-align: center;
-    background-color: var(--amaranth-purple);
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
