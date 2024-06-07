@@ -68,6 +68,8 @@ CREATE TABLE `lieu` (
 
 INSERT INTO `lieu` (`ID`, `ID_association`, `nom`, `NDC_NDL`, `type`, `profondeur`, `etage`, `description_lieu`, `largeur`, `longueur`) VALUES
 (1, 2, 'Stockage 1', 'NDL', 'Armoire', 0, 1, NULL, 0, 0);
+INSERT INTO `lieu` (`ID`, `ID_association`, `nom`, `NDC_NDL`, `type`, `profondeur`, `etage`, `description_lieu`, `largeur`, `longueur`) VALUES
+    (2, 2, 'Stockage 2', 'NDL', 'Armoire', 0, 1, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
