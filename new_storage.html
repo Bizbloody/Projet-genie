@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="new_storage.css">
   <title>Ajouter un espace de stockage</title>
   <script src='add_storage.js'></script>
+  <script src="get_associations_name.js"></script>
 </head>
 <body>
 
@@ -29,7 +30,9 @@
       </div>
       <div class="input">
         <label class="association_label">Association propriétaire :</label>
-        <input type="text" name="association" class="association">
+        <select id="association" name="association">
+          <option value="">Sélectionnez une association propriétaire</option>
+        </select>
         <span class="error" id="associationError"></span>
       </div>
       <div class="input">
@@ -83,10 +86,11 @@
         <div class="box3"><input type="text" name="description" class="description"></div>
         <span class="error" id="descriptionError"></span>
       </div>
-      <div class="button">
-        <div class="val"><input type="submit" name="Submit" value="Valider"></div>
-      </div>
+
     </form>
+  </div>
+  <div class="button">
+    <div class="val"><input type="submit" name="Submit" value="Valider"></div>
   </div>
   <a id="add_storage_button" href="get_list.php">Annuler</a>
 
