@@ -1,0 +1,107 @@
+@import 'colors.css';
+
+body {
+    background-color: var(--pale-dogwood);
+    color: var(--gunmetal);
+    font-family: Arial, sans-serif;
+}
+
+.bandeau {
+    width: 100%;
+    background-color: var(--amaranth-purple);
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.conteneur2 {
+    width: 70%;
+    margin: 2% auto auto;
+    padding: 1% 2%;
+    border: 1px solid var(--gunmetal);
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.name_label {
+    font-weight: 200;
+    font-size: 30px;
+}
+
+.header_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background-color: var(--amaranth-purple);
+    border: none;
+    color: white;
+    padding: 10%;
+}
+
+.details {
+    padding-left: 3%;
+    padding-top: 2%;
+}
+
+.separator {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid var(--gunmetal);
+}
+
+.size, .place {
+    display: flex;
+    gap: 2%;
+}
+
+.error {
+    color: red;
+    font-size: 15px;
+}
+
+label {
+    font-size: 16px;
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    align-items: center;
+    margin-bottom: 1%;
+}
+
+.place label{
+    width: 50%;
+}
+
+.size input{
+    width: 30%;
+}
+
+.place select {
+    width:100%;
+}
+
+#add_storage_button {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    text-align: center;
+    background-color: var(--amaranth-purple);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
