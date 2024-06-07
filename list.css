@@ -2,7 +2,8 @@
 
 body{
     background-color: var(--pale-dogwood );
-    color: var(--gunmetal)
+    color: var(--gunmetal);
+    font-family: Arial, sans-serif;
 }
 
 .bandeau{
@@ -14,13 +15,23 @@ body{
     justify-content: center;
     align-items: center;
     color: white;
+    font-size: 30px;
 }
 
+.conteneur {
+    width: 100%;
+    margin: 2% auto auto;
+    padding: 1% 2%;
+    display: flex;
+    flex-direction: column;
+    font-weight: 200;
+    font-size: 20px;
+}
 .storage{
     padding: 1% 2%;
     border: 1px solid var(--gunmetal);
     width: 55%;
-    margin: 1%;
+    margin: 1% auto auto;
     background-color: white;
     border-radius: 5px;
 
@@ -68,4 +79,16 @@ form{
 .size, .place {
     display: flex;
     gap: 20%;
+}
+
+#add_storage_button {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    text-align: center;
+    background-color: var(--amaranth-purple);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
 }
