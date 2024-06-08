@@ -1,21 +1,32 @@
 @import 'colors.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 body{
-    background-color: var(--pale-dogwood );
+    background-color: var(--puce);
     color: var(--gunmetal);
-    font-family: Arial, sans-serif;
+    font-family: Poppins, sans-serif;
+}
+header {
+    background-color: #f9f9f9;
+    margin-left: -20px;
+    margin-top: -20px;
 }
 
 .bandeau{
+    padding: 20px 0;
     width: 100%;
     background-color: var(--amaranth-purple);
-    height: 25%;
+    height: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
     font-size: 30px;
+    position: relative;
+    box-sizing: border-box;
+    margin-left: -20px;
+    margin-right: 0px;
 }
 
 .conteneur {
@@ -26,14 +37,15 @@ body{
     flex-direction: column;
     font-weight: 200;
     font-size: 20px;
+    position: relative;
 }
 .storage{
     padding: 1% 2%;
-    border: 1px solid var(--gunmetal);
+    border: 0px solid var(--gunmetal);
     width: 55%;
     margin: 1% auto auto;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 30px;
 
     display: flex;
     flex-direction: column;
@@ -55,11 +67,20 @@ body{
 }
 
 button {
-    background-color: var(--amaranth-purple);
+    width: fit-content;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    color: #fff;
+    font-size: 115%;
+    font-family: 'Gill Sans', sans-serif;
+    border-radius: 1rem;
     border: none;
-    color: white;
-    padding: 10%;
+    position: relative;
+    background: #2D3047;
+    transition: 0.1s;
 }
+
+
 form{
     margin-right: 1%;
 }
