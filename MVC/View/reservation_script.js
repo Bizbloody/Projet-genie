@@ -147,7 +147,7 @@ function() {
     params.set("lieu",lieu)
 
 
-    const encodedUrl = "getBooking.php?" + params.toString()
+    const encodedUrl = "../Controller/getBooking.php?" + params.toString()
     
     return fetch(encodedUrl)
     .then(result => result.json())
@@ -157,7 +157,7 @@ function() {
       console.log(data)
       alert("Les salles suivantes sont occupée :" + data.map(elem => " "+elem.nom))
 
-      const postUrl = "postBooking.php"
+      const postUrl = "../Controller/postBooking.php"
 
       const body = {
         name : resName,  
@@ -182,13 +182,13 @@ function() {
     const params = new URLSearchParams()
     params.set("lieuId",lieuId)
 
-      const encodedUrl = "getReservationsFromLieu.php ?"+params.toString()
+      const encodedUrl = "../Controller/getReservationsFromLieu.php ?"+params.toString()
       return fetch(encodedUrl)
         .then(result => result.json());
   }
 
   const getAllLieuAndPolulationLieuList = (lieuList) => {
-      const url = "getAllLieu.php";
+      const url = "../Controller/getAllLieu.php";
 
       return fetch(url)
         .then(result => result.json())

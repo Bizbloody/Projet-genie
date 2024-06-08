@@ -1,6 +1,6 @@
 <?php
 // Connexion à la base de données
-$env = parse_ini_file('.env');
+$env = parse_ini_file('../../.env');
 
 $servername = $env["SERVER_NAME"];
 $username = $env["USERNAME"];

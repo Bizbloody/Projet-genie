@@ -19,7 +19,7 @@
             $lieuId = $reservation_data -> lieuId;
             
 
-            $env = parse_ini_file('.env');
+            $env = parse_ini_file('../../.env');
 
             $servername = $env["SERVER_NAME"];
             $username = $env["USERNAME"];

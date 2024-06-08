@@ -2,7 +2,7 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     
-        $env = parse_ini_file('.env');
+        $env = parse_ini_file('../../.env');
 
         $servername = $env["SERVER_NAME"];
         $username = $env["USERNAME"];

@@ -3,7 +3,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $lieuId = $_GET['lieuId'];
     
-        $env = parse_ini_file('.env');
+        $env = parse_ini_file('../../.env');
 
         $servername = $env["SERVER_NAME"];
         $username = $env["USERNAME"];
