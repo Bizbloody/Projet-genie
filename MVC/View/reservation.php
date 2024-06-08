@@ -21,7 +21,7 @@ if (!isset($_SESSION['ID'])) {
     <script src='../../fullcalendar/core/index.global.js'></script>
     <script src='../../fullcalendar/daygrid/index.global.js'></script>
     <script src='../../fullcalendar/interaction/index.global.js'></script>
-    <link rel="stylesheet" href="reservation_style.css">
+    <link rel="stylesheet" href="css/reservation_style.css">
     <link rel="stylesheet" href="css/calendar.css">
 </head>
 <body>
