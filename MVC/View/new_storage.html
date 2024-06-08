@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/new_storage.css">
   <title>Ajouter un espace de stockage</title>
-  <script src='add_storage.js'></script>
+  <script src='new_storage.js'></script>
   <script src="get_associations_name.js"></script>
 </head>
 <body>
@@ -21,8 +21,8 @@
   <div class="bandeau1">Nouvel espace</div>
 </div>
 <div class="conteneur">
+  <form name="add_storage" method="post" action="../Controller/add_storage.php" onsubmit="return validateForm()">
   <div class="conteneur2">
-    <form name="add_storage" method="post" action="../Controller/add_storage.php" onsubmit="return validateForm()">
       <div class="input">
         <label class="name_label">Nom :</label>
         <input type="text" name="name" class="mail1">
@@ -87,12 +87,13 @@
         <span class="error" id="descriptionError"></span>
       </div>
 
-    </form>
   </div>
   <div class="buttons">
     <input type="submit" name="Submit" value="Valider">
     <a id="add_storage_button" href="../Controller/get_list.php">Annuler</a>
   </div>
+  </form>
+
 
 </div>
 

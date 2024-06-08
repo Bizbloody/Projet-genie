@@ -8,14 +8,18 @@ function validateForm() {
     const width = document.forms["add_storage"]["width"].value;
     const length = document.forms["add_storage"]["length"].value;
     const deepness = document.forms["add_storage"]["deepness"].value;
-    const campus = document.forms["add_storage"]["campus_select"].value;
+    const campus = document.forms["add_storage"]["campus"].value;
     const floor = document.forms["add_storage"]["floor"].value;
     const description = document.forms["add_storage"]["description"].value;
-
     let valid = true;
 
     if (!/^[a-zA-Z0-9\s]{3,50}$/.test(name)) {
         document.getElementById('nameError').textContent = "Le nom doit être alphanumérique et contenir entre 3 et 50 caractères.";
+        valid = false;
+    }
+
+    if (association === "") {
+        document.getElementById('associationError').textContent = "L'association propriétaire est obligatoire.";
         valid = false;
     }
 
@@ -39,6 +43,11 @@ function validateForm() {
         valid = false;
     }
 
+    if (campus == "") {
+        document.getElementById('campusError').textContent = "Le campus et l'étage sont obligatoires.";
+        valid = false;
+    }
+
     const validFloorsNDC = ['-1', '0', '1', '2', '3', '4', '5', '6'];
     const validFloorsNDL = ['-1', '0', '1', '2', '3', '4'];
 
@@ -52,7 +61,7 @@ function validateForm() {
         valid = false;
     }
 
-    if (description != "" && !/^[a-zA-Z0-9\s]{3,50}$/.test(description)) {
+    if (description !== "" && !/^[a-zA-Z0-9\s]{3,50}$/.test(description)) {
         document.getElementById('descriptionError').textContent = "La description doit être alphanumérique et contenir entre 3 et 50 caractères.";
         valid = false;
     }

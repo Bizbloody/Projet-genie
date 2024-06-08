@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 
     // Redirect or reload the page
-    header("Location: add_storage.php");
+    header("Location: ../View/list_storage.php");
     exit();
 
 }

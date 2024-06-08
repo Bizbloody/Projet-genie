@@ -1,5 +1,5 @@
 function displayAssociation() {
-    fetch('get_associations_name.php')
+    fetch('../Controller/get_associations_name.php')
         .then(response => response.json())
         .then(data => {
             const assoSelect = document.getElementById('association');
