@@ -13,41 +13,6 @@ body {
     overflow-x: hidden;
 }
 
-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 30px 100px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    z-index: 100;
-
-}
-
-.logo {
-    font-size: 2rem;
-    color: var(--amaranth-purple);
-    pointer-events: none;
-    margin-right: 60vh;
-}
-
-.nav a{
-    text-decoration: none;
-    color: var(--amaranth-purple);
-    padding: 6px 15px;
-    border-radius: 20px;
-    margin: 0 10px;
-    font-weight: 600;
-}
-
-.nav a:hover, .nav a.active{
-    background-color: var(--amaranth-purple);
-    color: #fff;
-
-}
-
 .parallax{
     position: relative;
     display: flex;
@@ -219,7 +184,7 @@ button {
 }
 
 button:hover {
-    transition-duration: 0.2;
+    transition-duration: 0.2s;
     opacity: 99%;
 }
 
