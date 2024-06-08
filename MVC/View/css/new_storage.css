@@ -60,6 +60,10 @@ body {
     font-size: 16px;
 }
 
+.buttons input:hover {
+    cursor: pointer;
+}
+
 .details {
     padding-left: 3%;
     padding-top: 2%;
