@@ -27,7 +27,7 @@ if (!isset($_SESSION['ID'])) {
 <body>
     <h1>Réservation d'espace de stockage</h1>
     <div class="link">
-        <a id="button_list" href="home.html">Accéder à la liste des espaces</a>
+        <a id="button_list" href="list.php">Accéder à la liste des espaces</a>
     </div>
     <form action="deconnexion.php" method="post">
         <div class="deco">
