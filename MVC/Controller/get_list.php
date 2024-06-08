@@ -44,4 +44,3 @@ if (isset($_POST['delete_button'])) {
 
 $conn->close();
 
-include '../View/list.html';

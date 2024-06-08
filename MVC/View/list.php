@@ -1,3 +1,8 @@
+<?php
+include '../Controller/get_list.php';
+?>
+
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
