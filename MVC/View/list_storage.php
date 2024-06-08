@@ -24,34 +24,34 @@ include '../Controller/get_list.php';
 </header>
 
 <div class="bandeau">
-  <div class="bandeau1">Liste des espaces</div>
+    <div class="bandeau1">Liste des espaces</div>
 </div>
 <div class="conteneur">
     <?php foreach ($storages as $storage): ?>
-    <div class="storage">
-      <div class="header_box">
-        <div class="name"><?php echo $storage['nom']; ?></div>
-        <form action="" method="post">
-          <input type="hidden" name="id_to_delete" value="<?php echo $storage['ID']?>">
-          <button type="submit" name="delete_button">Supprimer</button>
-        </form>
-      </div>
-      <hr class="separator">
-      <div class="details">
-        <div class="asso"><strong>Association propriétaire : </strong><?php echo $storage['ID_association']; ?></div>
-        <div class="size">
-          <div class="type"><strong>Type : </strong><?php echo $storage['type']; ?></div>
-          <div class="volume"><strong>Volume (l x L x P) : </strong><?php echo $storage['largeur']; ?> x <?php echo $storage['longueur']; ?> x <?php echo $storage['profondeur']; ?></div>
+        <div class="storage">
+            <div class="header_box">
+                <div class="name"><?php echo $storage['nom']; ?></div>
+                <form action="" method="post">
+                    <input type="hidden" name="id_to_delete" value="<?php echo $storage['ID']?>">
+                    <button type="submit" name="delete_button">Supprimer</button>
+                </form>
+            </div>
+            <hr class="separator">
+            <div class="details">
+                <div class="asso"><strong>Association propriétaire : </strong><?php echo $storage['ID_association']; ?></div>
+                <div class="size">
+                    <div class="type"><strong>Type : </strong><?php echo $storage['type']; ?></div>
+                    <div class="volume"><strong>Volume (l x L x P) : </strong><?php echo $storage['largeur']; ?> x <?php echo $storage['longueur']; ?> x <?php echo $storage['profondeur']; ?></div>
+                </div>
+                <div class="place">
+                    <div class="campus"><strong>Campus : </strong><?php echo $storage['NDC_NDL']; ?></div>
+                    <div class="etage"><strong>Etage : </strong><?php echo $storage['etage']; ?></div>
+                </div>
+                <div class="description_lieu"><strong>Description : </strong><?php echo $storage['description_lieu']; ?></div>
+            </div>
         </div>
-        <div class="place">
-          <div class="campus"><strong>Campus : </strong><?php echo $storage['NDC_NDL']; ?></div>
-          <div class="etage"><strong>Etage : </strong><?php echo $storage['etage']; ?></div>
-        </div>
-        <div class="description_lieu"><strong>Description : </strong><?php echo $storage['description_lieu']; ?></div>
-      </div>
-    </div>
     <?php endforeach; ?>
-  <a id="add_storage_button" href="new_storage.html">Ajouter un espace</a>
+    <a id="add_storage_button" href="new_storage.html">Ajouter un espace</a>
 
 </div>
 
