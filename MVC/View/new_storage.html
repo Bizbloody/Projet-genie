@@ -4,18 +4,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/new_storage.css">
+  <link rel="stylesheet" href="css/list.css">
   <title>Ajouter un espace de stockage</title>
   <script src='new_storage.js'></script>
   <script src="get_associations_name.js"></script>
 </head>
 <body>
 
-<header class="head">
-  <div class="c1">
-    <div class="logo">Stock ISEP</div>
-  </div>
-
-</header>
+<?php include "header.html"; ?>
 
 <div class="bandeau">
   <div class="bandeau1">Nouvel espace</div>
@@ -48,18 +44,21 @@
       </div>
       <div class="size">
         <div class="input">
-          <label class="width_label">Largeur (en cm) :</label>
+          <label class="width_label">Largeur :</label>
           <input type="number" name="width" class="width">
+          <span class="unit">cm</span>
           <span class="error" id="widthError"></span>
         </div>
         <div class="input">
-          <label class="length_label">Longueur (en cm) :</label>
+          <label class="length_label">Longueur :</label>
           <input type="number" name="length" class="length">
+          <span class="unit">cm</span>
           <span class="error" id="lengthError"></span>
         </div>
         <div class="input">
-          <label class="deepness_label">Profondeur (en cm) :</label>
+          <label class="deepness_label">Profondeur :</label>
           <input type="number" name="deepness" class="deepness">
+          <span class="unit">cm</span>
           <span class="error" id="deepnessError"></span>
         </div>
       </div>
@@ -83,7 +82,7 @@
       </div>
       <div class="input">
         <label class="description_label">Description :</label>
-        <div class="box3"><input type="text" name="description" class="description"></div>
+        <div class="box3"><input type="text" name="description_label" class="mail1"></div>
         <span class="error" id="descriptionError"></span>
       </div>
 

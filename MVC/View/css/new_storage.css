@@ -22,9 +22,9 @@ body {
     width: 70%;
     margin: 2% auto auto;
     padding: 1% 2%;
-    border: 1px solid var(--gunmetal);
-    background-color: white;
-    border-radius: 5px;
+    border: 0px solid var(--gunmetal);
+    background-color: #f9f9f9;
+    border-radius: 30px;
     display: flex;
     flex-direction: column;
     font-weight: 200;
@@ -72,7 +72,7 @@ body {
 .separator {
     margin: 10px 0;
     border: none;
-    border-top: 1px solid var(--gunmetal);
+    border-top: 1px solid var(--amaranth-purple);
 }
 
 .size, .place {
@@ -108,4 +108,46 @@ label {
     padding: 5px;
     outline: none;
     background-color: transparent;
+}
+
+.unit, .width {
+    font-size : 15px;
+}
+
+.input, .select {
+    position: relative;
+    width: 1000px;
+    margin: 10px 0;
+}
+
+.name_label, .description_label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-left: 10px;
+    color: #333;
+}
+
+.mail1 {
+    width: 50%;
+    padding: 12px 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mail1:focus {
+    border-color: #5b9bd5;
+    box-shadow: 0 0 8px rgba(91, 155, 213, 0.5);
+    outline: none;
+}
+
+.error {
+    display: block;
+    font-size: 14px;
+    color: red;
+    margin-top: 8px;
 }
