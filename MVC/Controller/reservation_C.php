@@ -5,7 +5,7 @@ session_status() === PHP_SESSION_ACTIVE ?: session_start();
 // QQN connecté ??
 if (!isset($_SESSION['ID'])) {
     // Rediriger vers la page de connexion
-    header("Location: index.html");
+    header("Location: home.html");
     exit();
 }
 
