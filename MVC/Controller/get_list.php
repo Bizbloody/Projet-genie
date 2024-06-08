@@ -2,7 +2,7 @@
 
 include 'delete_storage.php';
 
-$env = parse_ini_file('.env');
+$env = parse_ini_file('../../.env');
 
 $servername = $env["SERVER_NAME"];
 $username = $env["USERNAME"];
@@ -44,4 +44,4 @@ if (isset($_POST['delete_button'])) {
 
 $conn->close();
 
-include './list.html';
+include '../View/list.html';

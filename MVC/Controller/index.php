@@ -2,7 +2,7 @@
 session_status() === PHP_SESSION_ACTIVE ?: session_start();
 
 // Connexion à la base de données
-$env = parse_ini_file('.env');
+$env = parse_ini_file('../../.env');
 
 $servername = $env["SERVER_NAME"];
 $username = $env["USERNAME"];
@@ -48,7 +48,7 @@ if (isset($_POST["associations"]) && isset($_POST["mdp"])) {
 
             }
 
-            header("Location: test.html");
+            header("Location: ../View/reservation.php");
             exit();
         } else {
             // Mauvaise combinaison NomAssociation/mot de passe

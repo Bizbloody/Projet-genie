@@ -5,7 +5,7 @@
         $end =  $_GET['end'];
         $lieu =  $_GET['lieu'];
 
-        $env = parse_ini_file('.env');
+        $env = parse_ini_file('../../.env');
 
         $servername = $env["SERVER_NAME"];
         $username = $env["USERNAME"];

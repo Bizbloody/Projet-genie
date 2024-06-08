@@ -2,6 +2,13 @@
 
 session_status() === PHP_SESSION_ACTIVE ?: session_start();
 
+// QQN connecté ??
+if (!isset($_SESSION['ID'])) {
+    // Rediriger vers la page de connexion
+    header("Location: index.html");
+    exit();
+}
+
 $name = null;
 $start = 3;
 $end = 6;
@@ -22,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $end = $reservation_data->end;
 
       
-        $env = parse_ini_file('.env');
+        $env = parse_ini_file('../../.env');
 
         $servername = $env["SERVER_NAME"];
         $username = $env["USERNAME"];
