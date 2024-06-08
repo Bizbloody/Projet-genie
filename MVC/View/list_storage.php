@@ -8,20 +8,13 @@ include '../Controller/get_list.php';
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="list.css">
-  <link rel="stylesheet" href="header_style.css">
+  <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="css/header_style.css">
   <title>Liste des espaces</title>
 </head>
-<body>
 
-<header class="head">
-  <img src="Logo.png" alt="Logo" class="logo">
-  <nav class="nav">
-    <a href="#" class="active">Home</a>
-    <a href="#">About</a>
-    <a id='connexion' href="#">Connection</a>
-  </nav>
-</header>
+<body>
+<?php include "header.html"; ?>
 
 <div class="bandeau">
     <div class="bandeau1">Liste des espaces</div>
@@ -58,5 +51,3 @@ include '../Controller/get_list.php';
 
 </body>
 </html>
-
-
