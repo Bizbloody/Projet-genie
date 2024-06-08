@@ -5,7 +5,7 @@ session_status() === PHP_SESSION_ACTIVE ?: session_start();
 // QQN connecté ??
 if (!isset($_SESSION['ID'])) {
     // Rediriger vers la page de connexion
-    header("Location: index.html");
+    header("Location: home.html");
     exit();
 }
 ?>
@@ -22,12 +22,12 @@ if (!isset($_SESSION['ID'])) {
     <script src='../../fullcalendar/daygrid/index.global.js'></script>
     <script src='../../fullcalendar/interaction/index.global.js'></script>
     <link rel="stylesheet" href="reservation_style.css">
-    <link rel="stylesheet" href="calendar.css">
+    <link rel="stylesheet" href="css/calendar.css">
 </head>
 <body>
     <h1>Réservation d'espace de stockage</h1>
     <div class="link">
-        <a id="button_list" href="index.html">Accéder à la liste des espaces</a>
+        <a id="button_list" href="home.html">Accéder à la liste des espaces</a>
     </div>
     <form action="deconnexion.php" method="post">
         <div class="deco">
