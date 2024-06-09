@@ -37,7 +37,6 @@ if (!isset($_SESSION['ID'])) {
     <form id="reservationForm">
         <input type="hidden" id="selectedDate" name="selectedDate">
         <select type="storage" id="selectedStorage" name="selectedStorage">
-            <option value="">---</option>
         </select>
         <div class="spaceBetweenButtons"></div>
     </form>

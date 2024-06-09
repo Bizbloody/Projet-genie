@@ -1,6 +1,6 @@
 
 
-console.log('test_script.js is loaded');
+
 document.addEventListener('DOMContentLoaded', 
 function() {
   var calendarEl = document.getElementById('calendar');
@@ -37,14 +37,15 @@ function() {
     select: function(info) {  
         // Prompt the user to enter the reservation name
   const reservationName = prompt('Enter the name of the reservation:'); 
-  console.log("Nom de la reservation : "+reservationName);
+ 
   if (reservationName === null) {
       return;
   }else{
-    bookIfAvailable(info.startStr, info.endStr,resName = reservationName)
+    const lieuID = lieuList.selectedOptions[0].id
+    bookIfAvailable(info.startStr, info.endStr,resName = reservationName, lieuId=lieuID)
       .then(() => {
-        const lieuId = lieuList.selectedOptions[0].id
-        renderCalendarEventsFromLieuId(calendar,lieuId)
+        
+        renderCalendarEventsFromLieuId(calendar,lieuID)
       })
   }
 },
@@ -67,12 +68,12 @@ function() {
 
   });
 
-  const bookIfAvailable = (start = "", end = "",resName = "", lieu = "") => {
+  const bookIfAvailable = (start = "", end = "",resName = "", lieuId = 0) => {
 
     const params = new URLSearchParams()
     params.set("start", start)
     params.set("end", end)
-    params.set("lieu",lieu)
+    params.set("lieuId",lieuId)
 
 
     const encodedUrl = "../Controller/get_booking.php?" + params.toString()
@@ -80,10 +81,11 @@ function() {
     return fetch(encodedUrl)
     .then(result => result.json())
     .then(data => {
-      console.log(data)
-      const info =   data.map(elem => elem.nom + ", ");
-      console.log(data)
-      alert("Les salles suivantes sont occupée :" + data.map(elem => " "+elem.nom))
+    
+      if(data.map(elem => elem.ID).includes(lieuId)){
+        alert("Cette salee est deja reservée sur cette plage de date. Veuillez en choisisr une nouvelle.")
+        return;
+      }
 
       const postUrl = "../Controller/post_booking.php"
 
@@ -91,14 +93,14 @@ function() {
         name : resName,  
         start : start,
         end : end,
-        lieuId : 1      //todo change lieuId with the correct place for the reservation
+        lieuId : lieuId
       }
 
       return fetch(postUrl, {
         method : "POST",
         body: JSON.stringify(body),
       })
-      .then(console.log("Reservation is saved !"))
+      
 
       
     })
