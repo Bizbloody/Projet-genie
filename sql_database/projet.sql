@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 09 juin 2024 à 14:19
+-- Généré le : dim. 09 juin 2024 à 16:42
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.1.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `projet-cabrel`
+-- Base de données : `projet-test`
 --
 
 -- --------------------------------------------------------
@@ -82,16 +82,17 @@ CREATE TABLE `reservation` (
   `ID_lieu` tinyint(30) NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
-  `status` tinytext NOT NULL
+  `status` tinytext NOT NULL,
+  `reservation_name` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `reservation`
 --
 
-INSERT INTO `reservation` (`ID`, `ID_association`, `ID_lieu`, `date_debut`, `date_fin`, `status`) VALUES
-(1, 4, 1, '2024-06-10', '2024-06-12', 'good'),
-(2, 4, 1, '2024-06-25', '2024-06-27', 'good');
+INSERT INTO `reservation` (`ID`, `ID_association`, `ID_lieu`, `date_debut`, `date_fin`, `status`, `reservation_name`) VALUES
+(5, 2, 1, '2024-06-13', '2024-06-17', 'Actif', 'Réservation BBQ'),
+(6, 2, 1, '2024-06-17', '2024-06-21', 'Actif', 'Réservation Fête de la musique');
 
 --
 -- Index pour les tables déchargées
@@ -140,7 +141,7 @@ ALTER TABLE `lieu`
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées
@@ -150,14 +151,14 @@ ALTER TABLE `reservation`
 -- Contraintes pour la table `lieu`
 --
 ALTER TABLE `lieu`
-  ADD CONSTRAINT `lieu_ibfk_1` FOREIGN KEY (`ID_association`) REFERENCES `associations` (`ID`);
+  ADD CONSTRAINT `lieu_ibfk_1` FOREIGN KEY (`ID_association`) REFERENCES `associations` (`ID`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Contraintes pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`ID_association`) REFERENCES `associations` (`ID`),
-  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`ID_lieu`) REFERENCES `lieu` (`ID`);
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`ID_lieu`) REFERENCES `lieu` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`ID_association`) REFERENCES `associations` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
