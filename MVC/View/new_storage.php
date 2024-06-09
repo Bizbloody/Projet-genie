@@ -1,3 +1,15 @@
+<?php
+
+session_status() === PHP_SESSION_ACTIVE ?: session_start();
+
+// QQN connecté ??
+if (!isset($_SESSION['ID'])) {
+    // Rediriger vers la page de connexion
+    header("Location: ../index.php");
+    exit();
+}
+?>
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -25,11 +37,8 @@
         <span class="error" id="nameError"></span>
       </div>
       <div class="input">
-        <label class="association_label">Association propriétaire :</label>
-        <select id="association" name="association">
-          <option value="">Sélectionnez une association propriétaire</option>
-        </select>
-        <span class="error" id="associationError"></span>
+        <label class="association_label">Association propriétaire : <?php echo($_SESSION['pseudo']);?></label>
+        <input type="hidden" value="<?php echo($_SESSION['ID']);?>">
       </div>
       <div class="input">
         <label class="type_label">Type :</label>
