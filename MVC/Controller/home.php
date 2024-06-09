@@ -1,71 +1,42 @@
 <?php
-session_status() === PHP_SESSION_ACTIVE ?: session_start();
-
-// Connexion à la base de données
-$env = parse_ini_file('../../.env');
-
-$servername = $env["SERVER_NAME"];
-$username = $env["USERNAME"];
-$password = $env["PASSWORD"];
-$dbname = $env["DB_NAME"];
-
-
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Check if a session is already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
-// Vérification des informations de connexion
-if (isset($_POST["associations"]) && isset($_POST["mdp"])) {
-    $pseudo1 = $_POST["associations"];
-    $mdp = $_POST["mdp"];
+require '../Model/db.php';
 
-    // Récupération du mot de passe haché et de idRPPS depuis la base de données
-    $sql = "SELECT mdp, pseudo, ID FROM associations WHERE pseudo = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $pseudo1);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $pseudo = $_POST['pseudo'];
+    $mdp = $_POST['mdp'];
+
+    // Prepare and execute the query to fetch user data based on the pseudo
+    $stmt = $conn->prepare("SELECT * FROM associations WHERE pseudo = ?");
+    $stmt->bind_param("s", $pseudo);
     $stmt->execute();
     $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $hashedPassword = $row["mdp"];
-        $pseudo2 = $row["pseudo"];
-        $ID = $row["ID"];
+// Vérifiez le mot de passe
+    if ($user && password_verify($mdp, $user['mdp'])) {
+        // Stockez les données utilisateur dans la session
+        $_SESSION['ID'] = $user['ID'];
+        $_SESSION['pseudo'] = $user['pseudo'];
+        $_SESSION['role'] = $user['role'];
 
-        // Vérification du mot de passe
-        if (password_verify($mdp, $hashedPassword)) {
-            // Connexion réussie
-            $_SESSION["pseudo"] = $pseudo2;
-            $_SESSION["ID"] = $ID;
-
-
-            // Gestion du cookie "Se souvenir de moi"
-            if (isset($_POST['remember'])) {
-                // Création du cookie avec une durée de validité d'une semaine
-                setcookie('remember_me', $pseudo2, time() + (7 * 24 * 60 * 60), '/');
-
-            }
-
-            header("Location: ../View/reservation.php");
+        // Redirigez en fonction du rôle de l'utilisateur
+        if ($user['role'] == 'Admin') {
+            header("Location: ../View/admin.php");
             exit();
         } else {
-            // Mauvaise combinaison NomAssociation/mot de passe
-            $erreur = "Adresse e-mail ou mot de passe incorrect";
-            echo $mdp, $pseudo1, $pseudo2, $row["mdp"];
+            header("Location: ../View/reservation.php");
+            exit();
         }
     } else {
-        // Utilisateur non trouvé
-        $erreur = "pas trouvé";
+        echo "Nom d'utilisateur ou mot de passe incorrect.<br>";
     }
+
+// Fermez la déclaration et la connexion
+    $stmt->close();
+    $conn->close();
 }
-
-
-// Affichage de l'erreur, le cas échéant
-if (isset($erreur)) {
-    echo '<p class="erreur">' . $erreur . '</p>';
-}
-
-$conn->close();
-?>
