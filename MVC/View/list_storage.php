@@ -10,7 +10,7 @@ include '../Controller/get_list.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/list.css">
     <link rel="stylesheet" href="css/header_style.css">
-  <title>Liste des espaces</title>
+  <title>Stock' ISEP - Liste des espaces</title>
 </head>
 
 <body>

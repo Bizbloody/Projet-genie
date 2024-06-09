@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax Scrolling Website | Codehal</title>
+    <title>Stock' ISEP - Accueil</title>
     <link rel="stylesheet" href="View/css/style.css">
     <link rel="stylesheet" href="View/css/header_style.css">
 </head>
@@ -15,7 +15,8 @@
 <header class="head">
     <img src="../images/Logo.png" alt="Logo" class="logo">
     <nav class="nav">
-        <a href="../index.php">Home</a>
+        <a href="../index.php">Accueil</a>
+        <a href="reservation.php">Réservation</a>
         <a href="#">Connexion</a>
         <a href="View/inscription.html">Inscription</a>
     </nav>
@@ -28,7 +29,7 @@
         <img src="../images/hill4.png" id="hill4">
         <img src="../images/hill5.png" id="hill5">
         <img src="../images/tree.png" id="tree">
-        <h2 id="text">Projet Génie Logiciel</h2>
+        <h2 id="text">Stock' ISEP</h2>
         <img src="../images/leaf.png" id="leaf">
         <img src="../images/plant.png" id="plant">
     </section>
@@ -52,9 +53,9 @@
         </p>
         <form action="Controller/home.php" method="POST">
             <div class="formulaire">
-                <input type="text" id="pseudo" name="pseudo" required class="input" placeholder="Nom Association" size="60%">
-                <input type="password" name="mdp"  id="mdp" class="input" placeholder="Mot de passe" required
-                       size="60%">
+                <input type="text" name="pseudo" class="input" placeholder="Nom Association" size="60%">
+                <input type="password" name="mdp" class="input" placeholder="Mot de passe" required
+                    size="60%">
             </div>
             <label class="container">
                 <input type="checkbox" name="remember" id="remember">
@@ -69,8 +70,6 @@
             </center>
         </form>
     </section>
-
-    <script src="script.js"></script>
 </body>
 
 </html>

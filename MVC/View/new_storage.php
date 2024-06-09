@@ -1,3 +1,15 @@
+<?php
+
+session_status() === PHP_SESSION_ACTIVE ?: session_start();
+
+// QQN connecté ??
+if (!isset($_SESSION['ID'])) {
+    // Rediriger vers la page de connexion
+    header("Location: ../index.php");
+    exit();
+}
+?>
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -5,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/new_storage.css">
   <link rel="stylesheet" href="css/header_style.css">
-  <title>Ajouter un espace de stockage</title>
+  <title>Stock' ISEP - Ajouter un espace</title>
   <script src='new_storage.js'></script>
   <script src="get_associations_name.js"></script>
 </head>
@@ -25,11 +37,8 @@
         <span class="error" id="nameError"></span>
       </div>
       <div class="input">
-        <label class="association_label">Association propriétaire :</label>
-        <select id="association" name="association">
-          <option value="">Sélectionnez une association propriétaire</option>
-        </select>
-        <span class="error" id="associationError"></span>
+        <label class="association_label">Association propriétaire : <?php echo($_SESSION['pseudo']);?></label>
+        <input type="hidden" value="<?php echo($_SESSION['ID']);?>">
       </div>
       <div class="input">
         <label class="type_label">Type :</label>
