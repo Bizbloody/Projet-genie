@@ -91,7 +91,6 @@ header {
     position: relative;
     background: var(--puce);
     padding: 100px;
-    margin-top: 125px;
 }
 
 .sec h2 {
@@ -157,7 +156,6 @@ header {
 .container {
     width: 80%;
     margin: auto;
-    padding-top: 100px;
 }
 
 h1 {
