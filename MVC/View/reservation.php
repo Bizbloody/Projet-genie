@@ -23,25 +23,23 @@ if (!isset($_SESSION['ID'])) {
     <script src='../../fullcalendar/interaction/index.global.js'></script>
     <link rel="stylesheet" href="css/reservation_style.css">
     <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="css/header_style.css">
 </head>
 <body>
-    <h1>Réservation d'espace de stockage</h1>
+
+<?php include 'header.html' ?>
+    <div class="bandeau">
+        <h1>Réservation d'espace de stockage</h1>
+    </div>
     <div class="link">
         <a id="button_list" href="list_storage.php">Accéder à la liste des espaces</a>
     </div>
-    <form action="deconnexion.php" method="post">
-        <div class="deco">
-            <button type="submit" >déconnexion</button>
-        </div>
-    </form>
     <form id="reservationForm">
         <input type="hidden" id="selectedDate" name="selectedDate">
         <select type="storage" id="selectedStorage" name="selectedStorage">
             <option value="">---</option>
-            <option value="storage_id">Storage</option>
         </select>
         <div class="spaceBetweenButtons"></div>
-        <button type="submit" >Réserver</button>
     </form>
     <div id="calendar"></div>
 

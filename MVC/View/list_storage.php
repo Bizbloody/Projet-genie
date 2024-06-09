@@ -14,7 +14,8 @@ include '../Controller/get_list.php';
 </head>
 
 <body>
-<?php include "header.html"; ?>
+
+<?php include 'header.html'; ?>
 
 <div class="bandeau">
     <div class="bandeau1">Liste des espaces</div>

@@ -4,6 +4,6 @@ session_start();
 session_destroy();
 
 // Rediriger vers la page de connexion ou toute autre page appropriée après la déconnexion
-header("Location: ../View/home.html");
+header("Location: ../index.php");
 exit();
 ?>
