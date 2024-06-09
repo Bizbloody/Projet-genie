@@ -15,7 +15,7 @@ function displayAssociation() {
             data.forEach(association => {
                 const option = document.createElement('option');
                 option.value = association.ID;
-                option.textContent = association.nom;
+                option.textContent = association.pseudo;
                 assoSelect.appendChild(option);
             });
         })

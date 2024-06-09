@@ -10,7 +10,7 @@ $dbname = $env["DB_NAME"];
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 function getAssociations($conn) {
-    $stmt = $conn->prepare("SELECT ID, nom FROM associations");
+    $stmt = $conn->prepare("SELECT ID, pseudo FROM associations WHERE role='Association'");
     $stmt->execute();
     $result = $stmt->get_result();
     $associations = array();
