@@ -20,16 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Vérifiez le mot de passe
     if ($user && password_verify($mdp, $user['mdp'])) {
         // Stockez les données utilisateur dans la session
-        $_SESSION['user_id'] = $user['ID'];
-        $_SESSION['user_pseudo'] = $user['pseudo'];
-        $_SESSION['user_nom'] = $user['nom'];
+        $_SESSION['ID'] = $user['ID'];
+        $_SESSION['pseudo'] = $user['pseudo'];
+        $_SESSION['role'] = $user['role'];
 
         // Redirigez en fonction du rôle de l'utilisateur
-        if ($user['pseudo'] == 'admin') {
+        if ($user['role'] == 'Admin') {
             header("Location: ../View/admin.php");
             exit();
         } else {
-            header("Location: reservation.php");
+            header("Location: ../View/reservation.php");
             exit();
         }
     } else {

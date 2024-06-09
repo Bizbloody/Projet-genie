@@ -2,13 +2,14 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-if ($_SESSION['user_pseudo'] != 'admin') {
-    header("Location: login.php");
+if ($_SESSION['role'] != 'Admin') {
+    header("Location: ../index.php");
     exit();
 }
 
 // Admin-specific functionality here
 include '../Controller/admin.php';
+include '../Controller/get_list.php';
 
 
 ?>
@@ -22,6 +23,8 @@ include '../Controller/admin.php';
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="css/admin-style.css">
     <link rel="stylesheet" href="css/header_style.css">
+    <link rel="stylesheet" href="css/list.css">
+
 </head>
 <body>
 
@@ -33,7 +36,7 @@ include '../Controller/admin.php';
     <div class="container">
 
         <section class="sec">
-            <h2>Welcome, <?php echo htmlspecialchars($_SESSION['user_pseudo']); ?></h2>
+            <h2>Welcome, <?php echo htmlspecialchars($_SESSION['pseudo']); ?></h2>
 
             <div class="crud-section">
                 <h2>Associations</h2>
@@ -42,7 +45,7 @@ include '../Controller/admin.php';
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nom</th>
+                            <th>Role</th>
                             <th>Pseudo</th>
                             <th>Actions</th>
                         </tr>
@@ -51,11 +54,11 @@ include '../Controller/admin.php';
                         <?php foreach ($associations as $association): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($association['ID']); ?></td>
-                            <td><?php echo htmlspecialchars($association['nom']); ?></td>
+                            <td><?php echo htmlspecialchars($association['role']); ?></td>
                             <td><?php echo htmlspecialchars($association['pseudo']); ?></td>
                             <td>
                                 <a href="edit_association.php?id=<?php echo $association['ID']; ?>" class="btn">Edit</a>
-                                <a href="delete_association.php?id=<?php echo $association['ID']; ?>" class="btn">Delete</a>
+                                <a href="../Controller/delete_association.php?id=<?php echo $association['ID']; ?>" class="btn">Delete</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -64,43 +67,31 @@ include '../Controller/admin.php';
             </div>
 
             <div class="crud-section">
-                <h2>Lieux</h2>
-                <!-- <a href="add_lieu.php" class="btn">Add New Lieu</a> -->
-                <table class="crud-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>ID Association</th>
-                            <th>Nom</th>
-                            <th>NDC/NDL</th>
-                            <th>Type</th>
-                            <th>Taille</th>
-                            <th>Description Taille</th>
-                            <th>Étage</th>
-                            <th>Description Lieu</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($lieux as $lieu): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($lieu['ID']); ?></td>
-                            <td><?php echo htmlspecialchars($lieu['ID_association']); ?></td>
-                            <td><?php echo htmlspecialchars($lieu['nom']); ?></td>
-                            <td><?php echo htmlspecialchars($lieu['NDC_NDL']); ?></td>
-                            <td><?php echo htmlspecialchars($lieu['type']); ?></td>
-                            <td><?php echo htmlspecialchars($lieu['taille']); ?></td>
-                            <td><?php echo htmlspecialchars($lieu['description_taille']); ?></td>
-                            <td><?php echo htmlspecialchars($lieu['etage']); ?></td>
-                            <td><?php echo htmlspecialchars($lieu['description_lieu']); ?></td>
-                            <td>
-                                <!-- <a href="edit_lieu.php?id=<?php echo $lieu['ID']; ?>" class="btn">Edit</a>
-                                <a href="delete_lieu.php?id=<?php echo $lieu['ID']; ?>" class="btn">Delete</a> -->
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <h2>Espaces de stockage</h2>
+                <?php foreach ($storages as $storage): ?>
+                    <div class="storage">
+                        <div class="header_box">
+                            <div class="name"><?php echo $storage['nom']; ?></div>
+                            <form action="" method="post">
+                                <input type="hidden" name="id_to_delete" value="<?php echo $storage['ID']?>">
+                                <button type="submit" name="delete_button">Supprimer</button>
+                            </form>
+                        </div>
+                        <hr class="separator">
+                        <div class="details">
+                            <div class="asso"><strong>Association propriétaire : </strong><?php echo $storage['ID_association']; ?></div>
+                            <div class="size">
+                                <div class="type"><strong>Type : </strong><?php echo $storage['type']; ?></div>
+                                <div class="volume"><strong>Volume (l x L x P) : </strong><?php echo $storage['largeur']; ?> x <?php echo $storage['longueur']; ?> x <?php echo $storage['profondeur']; ?></div>
+                            </div>
+                            <div class="place">
+                                <div class="campus"><strong>Campus : </strong><?php echo $storage['NDC_NDL']; ?></div>
+                                <div class="etage"><strong>Etage : </strong><?php echo $storage['etage']; ?></div>
+                            </div>
+                            <div class="description_lieu"><strong>Description : </strong><?php echo $storage['description_lieu']; ?></div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
 
             <div class="crud-section">

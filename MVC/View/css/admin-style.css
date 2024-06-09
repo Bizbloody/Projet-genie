@@ -172,9 +172,7 @@ form {
     background-color: white;
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 label {
@@ -192,7 +190,7 @@ input[type="password"] {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: var(--amaranth-purple);
     color: white;
     border: none;
     padding: 10px 15px;
@@ -206,5 +204,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: var(--amaranth-purple);
 }
