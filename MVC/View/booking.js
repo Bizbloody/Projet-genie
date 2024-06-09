@@ -76,7 +76,7 @@ function() {
     params.set("lieuId",lieuId)
 
 
-    const encodedUrl = "../Controller/get_reservations_from_lieu.php?"+params.toString()
+    const encodedUrl = "../Controller/get_booking.php?"+params.toString()
     
     return fetch(encodedUrl)
     .then(result => result.json())
