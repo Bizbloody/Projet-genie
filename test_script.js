@@ -8,11 +8,6 @@ function() {
 
   var lieuList = document.getElementById('selectedStorage');
 
-
-  
-
- 
-  
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     selectable: true,
@@ -42,14 +37,17 @@ function() {
     select: function(info) {  
         // Prompt the user to enter the reservation name
   const reservationName = prompt('Enter the name of the reservation:'); 
-  console.log("Nom de la reservation : "+reservationName);
+  
   if (reservationName === null) {
       return;
   }else{
-    bookIfAvailable(info.startStr, info.endStr,resName = reservationName)
+    const lieuID = lieuList.selectedOptions[0].id
+
+
+    bookIfAvailable(info.startStr, info.endStr,resName = reservationName, lieuId=lieuID)
       .then(() => {
-        const lieuId = lieuList.selectedOptions[0].id
-        renderCalendarEventsFromLieuId(calendar,lieuId)
+        
+        renderCalendarEventsFromLieuId(calendar,lieuID)
       })
   //   fetchAvailablePlaces(info.startStr, info.endStr)
   //   .then(places => {
@@ -139,12 +137,12 @@ function() {
   } */
 
 
-  const bookIfAvailable = (start = "", end = "",resName = "", lieu = "") => {
+  const bookIfAvailable = (start = "", end = "",resName = "", lieuId = 0) => {
 
     const params = new URLSearchParams()
     params.set("start", start)
     params.set("end", end)
-    params.set("lieu",lieu)
+    params.set("lieuId",lieuId)
 
 
     const encodedUrl = "getBooking.php?" + params.toString()
@@ -152,10 +150,15 @@ function() {
     return fetch(encodedUrl)
     .then(result => result.json())
     .then(data => {
-      console.log(data)
-      const info =   data.map(elem => elem.nom + ", ");
-      console.log(data)
-      alert("Les salles suivantes sont occupée :" + data.map(elem => " "+elem.nom))
+      const info = data.map(elem => elem.nom + ", ");
+      
+      //alert("Les salles suivantes sont occupée :" + data.map(elem => " "+elem.nom))
+      console.log(data.map(elem => elem))
+      if(data.map(elem => elem.ID).includes(lieuId)){
+        console.log("NONNNN")
+        alert("Cette salee est deja reservée sur cette plage de date. Veuillez en choisisr une nouvelle.")
+        return;
+      }
 
       const postUrl = "postBooking.php"
 
