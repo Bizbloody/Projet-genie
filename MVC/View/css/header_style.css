@@ -3,8 +3,7 @@
 
 header {
     position: relative;
-    width: 100%;
-    padding: 30px 100px;
+    padding: 2% 2% !important;
     display: flex;
     justify-content: flex-start;
     align-items: center;

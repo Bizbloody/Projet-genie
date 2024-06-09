@@ -5,10 +5,11 @@ body{
     background-color: var(--puce);
     color: var(--gunmetal);
     font-family: Poppins, sans-serif;
+    margin:0px;
 }
 
 #calendar {
-    margin: 1% 10% 0%;
+    margin: 1% 10% 4%;
 }
 
 form#reservationForm {
@@ -119,7 +120,6 @@ button {
     font-size: 15px;
     position: relative;
     box-sizing: border-box;
-    margin-left: -20px;
     margin-right: 0px;
     margin-bottom: 2%;
 }
