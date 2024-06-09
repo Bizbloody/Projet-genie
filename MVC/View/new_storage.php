@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/new_storage.css">
   <link rel="stylesheet" href="css/header_style.css">
-  <title>Ajouter un espace de stockage</title>
+  <title>Stock' ISEP - Ajouter un espace</title>
   <script src='new_storage.js'></script>
   <script src="get_associations_name.js"></script>
 </head>
