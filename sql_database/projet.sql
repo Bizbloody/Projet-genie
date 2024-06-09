@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 05 juin 2024 à 09:27
+-- Généré le : dim. 09 juin 2024 à 14:19
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.1.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `projet`
+-- Base de données : `projet-cabrel`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `associations` (
   `ID` tinyint(30) NOT NULL,
-  `nom` tinytext NOT NULL,
+  `role` tinytext NOT NULL,
   `pseudo` tinytext NOT NULL,
   `mdp` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -38,10 +38,11 @@ CREATE TABLE `associations` (
 -- Déchargement des données de la table `associations`
 --
 
-INSERT INTO `associations` (`ID`, `nom`, `pseudo`, `mdp`) VALUES
-(2, 'bizou', 'bibi', ''),
-(3, 'blabla', 'blabla', '$2y$10$Pz79GPpyyc9nkhtjsBhcHeD.CHOCBZ747fIaUZhE6l3rY7cA3IUWW'),
-(4, 'blabla2', 'blabla2', '$2y$10$kkoHHKAISfPojLEUMORy0u4RtdQYLDO0OXlJU66NQM6fJ5MtRqSAG');
+INSERT INTO `associations` (`ID`, `role`, `pseudo`, `mdp`) VALUES
+(1, 'Association', 'IsHelp', '$2y$10$E7M2cUkP23S8/PA.XEIBr.upunlu/bPGN3vEsmqbF4rbwAUTq4L7W'),
+(2, 'Admin', 'admin', '$2y$10$EF5Iz04z1DCGaVfqUoRY7erjBkDQfp6pytHLeheWcXhuk2zoTl18e'),
+(3, 'Association', 'IGC', '$2y$10$wawQ1NIAsIolu27dm9N7Q.HGSSlOagOzf.HHAT.m1/4.OSQKAk9De'),
+(4, 'Association', 'BTR', '$2y$10$XcTsm3s5fKRp9eRbj5bJiObkMeGP1igdolO8n5uUSCE/G2tsoXfOm');
 
 -- --------------------------------------------------------
 
@@ -55,10 +56,10 @@ CREATE TABLE `lieu` (
   `nom` text NOT NULL,
   `NDC_NDL` varchar(3) NOT NULL,
   `type` varchar(255) NOT NULL,
-  `profondeur` int(11) NOT NULL,
   `etage` int(11) NOT NULL,
   `description_lieu` varchar(300) DEFAULT NULL,
   `largeur` int(11) NOT NULL,
+  `profondeur` int(11) NOT NULL,
   `longueur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -66,8 +67,8 @@ CREATE TABLE `lieu` (
 -- Déchargement des données de la table `lieu`
 --
 
-INSERT INTO `lieu` (`ID`, `ID_association`, `nom`, `NDC_NDL`, `type`, `profondeur`, `etage`, `description_lieu`, `largeur`, `longueur`) VALUES
-(1, 2, 'Stockage 1', 'NDL', 'Armoire', 0, 1, NULL, 0, 0);
+INSERT INTO `lieu` (`ID`, `ID_association`, `nom`, `NDC_NDL`, `type`, `etage`, `description_lieu`, `largeur`, `profondeur`, `longueur`) VALUES
+(1, 2, 'Stockage 1', 'NDL', 'Armoire', 1, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -81,9 +82,16 @@ CREATE TABLE `reservation` (
   `ID_lieu` tinyint(30) NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
-  `status` tinytext NOT NULL,
-  `reservation_name` varchar(256) NOT NULL
+  `status` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `reservation`
+--
+
+INSERT INTO `reservation` (`ID`, `ID_association`, `ID_lieu`, `date_debut`, `date_fin`, `status`) VALUES
+(1, 4, 1, '2024-06-10', '2024-06-12', 'good'),
+(2, 4, 1, '2024-06-25', '2024-06-27', 'good');
 
 --
 -- Index pour les tables déchargées
@@ -93,7 +101,9 @@ CREATE TABLE `reservation` (
 -- Index pour la table `associations`
 --
 ALTER TABLE `associations`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `ID` (`ID`),
+  ADD UNIQUE KEY `pseudo` (`pseudo`) USING HASH;
 
 --
 -- Index pour la table `lieu`
@@ -118,19 +128,19 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT pour la table `associations`
 --
 ALTER TABLE `associations`
-  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `lieu`
 --
 ALTER TABLE `lieu`
-  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
@@ -140,14 +150,14 @@ ALTER TABLE `reservation`
 -- Contraintes pour la table `lieu`
 --
 ALTER TABLE `lieu`
-  ADD CONSTRAINT `lieu_ibfk_1` FOREIGN KEY (`ID_association`) REFERENCES `associations` (`ID`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `lieu_ibfk_1` FOREIGN KEY (`ID_association`) REFERENCES `associations` (`ID`);
 
 --
 -- Contraintes pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`ID_lieu`) REFERENCES `lieu` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`ID_association`) REFERENCES `associations` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`ID_association`) REFERENCES `associations` (`ID`),
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`ID_lieu`) REFERENCES `lieu` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
