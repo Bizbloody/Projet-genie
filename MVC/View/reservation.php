@@ -28,8 +28,9 @@ if (!isset($_SESSION['ID'])) {
 <body>
 
 <?php include 'header.html' ?>
-
-    <h1>Réservation d'espace de stockage</h1>
+    <div class="bandeau">
+        <h1>Réservation d'espace de stockage</h1>
+    </div>
     <div class="link">
         <a id="button_list" href="list_storage.php">Accéder à la liste des espaces</a>
     </div>
