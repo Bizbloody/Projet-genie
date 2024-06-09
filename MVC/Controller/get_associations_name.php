@@ -1,27 +1,8 @@
 <?php
 
-$env = parse_ini_file('../../.env');
+include '../Model/db.php';
 
-$servername = $env["SERVER_NAME"];
-$username = $env["USERNAME"];
-$password = $env["PASSWORD"];
-$dbname = $env["DB_NAME"];
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-function getAssociations($conn) {
-    $stmt = $conn->prepare("SELECT ID, pseudo FROM associations WHERE role='Association'");
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $associations = array();
-
-    while ($row = $result->fetch_assoc()) {
-        $associations[] = $row;
-    }
-
-    $stmt->close();
-    return $associations;
-}
+include '../Model/association_queries.php';
 
 $associations = getAssociations($conn);
 $conn->close();

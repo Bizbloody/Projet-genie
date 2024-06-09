@@ -1,17 +1,12 @@
 
 
-console.log('test_script.js is loaded'); // Add this line
-
+console.log('test_script.js is loaded');
 document.addEventListener('DOMContentLoaded', 
 function() {
   var calendarEl = document.getElementById('calendar');
 
   var lieuList = document.getElementById('selectedStorage');
 
-
-  
-
- 
   
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
@@ -20,7 +15,7 @@ function() {
       code: 'fr',
       week: {
         dow: 1,
-        doy: 4, // The week that contains Jan 4th is the first week of the year.
+        doy: 4,
       },
       buttonText: {
         prev: 'Précédent',
@@ -51,38 +46,7 @@ function() {
         const lieuId = lieuList.selectedOptions[0].id
         renderCalendarEventsFromLieuId(calendar,lieuId)
       })
-  //   fetchAvailablePlaces(info.startStr, info.endStr)
-  //   .then(places => {
-  //     // Display available places in a modal
-  //     displayAvailablePlacesInModal(places, reservationName, info);
-  //   })
-  //   .catch(error => {
-  //     console.error('Error fetching available places:', error);
-  //   });
-
-  //   const selectedEvent = {
-  //     title: reservationName,
-  //     start: info.startStr,
-  //     end: info.endStr,
-  //     rendering: 'background', // Render as a background event
-  //     backgroundColor: 'yellow', // Set the background color
-  //     textColor: 'black'
-
-  //   };
-
-  //   const reservationData = {
-  //     name: reservationName,
-  //     start: info.startStr,
-  //     end: info.endStr
-  //   };
-
-  // saveReservation(reservationData);
-
   }
-
-  // Render the selected event on the calendar
-  //calendar.addEvent(selectedEvent);
-
 },
   })
 
@@ -101,43 +65,7 @@ function() {
     calendar.render();
 
 
-
-    // Function to send reservation data to the server
-    // function saveReservation(reservationData) {
-    //   // Send reservation data to the server using AJAX
-    //   const xhr = new XMLHttpRequest();
-    //   xhr.open('POST', 'test_php.php', true);
-    //   xhr.setRequestHeader('Content-Type', 'application/json');
-    //   xhr.onload = function() {
-    //       if (xhr.status === 200) {
-    //           // Handle successful response from the server
-    //           console.log('Reservation saved successfully.');
-    //       } else {
-    //           // Handle error response from the server
-    //           console.error('Error saving reservation:', xhr.statusText);
-    //       }
-    //   };
-    //   xhr.onerror = function() {
-    //       // Handle connection errors
-    //       console.error('Error sending request to the server.');
-    //   };
-    //   xhr.send(JSON.stringify(reservationData));
-    // }
   });
-
- /* function fetchAvailablePlaces(startDate, endDate) {
-    return new Promise((resolve, reject) => {
-      // Simulated example - replace with your actual implementation
-      const availablePlaces = [
-        { id: 1, name: 'Place 1', info: 'More info about Place 1' },
-        { id: 2, name: 'Place 2', info: 'More info about Place 2' },
-        { id: 3, name: 'Place 3', info: 'More info about Place 3' }
-      ];
-      resolve(availablePlaces);
-      return;
-    });
-  } */
-
 
   const bookIfAvailable = (start = "", end = "",resName = "", lieu = "") => {
 
@@ -147,7 +75,7 @@ function() {
     params.set("lieu",lieu)
 
 
-    const encodedUrl = "../Controller/getBooking.php?" + params.toString()
+    const encodedUrl = "../Controller/get_booking.php?" + params.toString()
     
     return fetch(encodedUrl)
     .then(result => result.json())
@@ -157,7 +85,7 @@ function() {
       console.log(data)
       alert("Les salles suivantes sont occupée :" + data.map(elem => " "+elem.nom))
 
-      const postUrl = "../Controller/postBooking.php"
+      const postUrl = "../Controller/post_booking.php"
 
       const body = {
         name : resName,  
@@ -182,13 +110,13 @@ function() {
     const params = new URLSearchParams()
     params.set("lieuId",lieuId)
 
-      const encodedUrl = "../Controller/getReservationsFromLieu.php ?"+params.toString()
+      const encodedUrl = "../Controller/get_reservations_from_lieu.php ?"+params.toString()
       return fetch(encodedUrl)
         .then(result => result.json());
   }
 
   const getAllLieuAndPolulationLieuList = (lieuList) => {
-      const url = "../Controller/getAllLieu.php";
+      const url = "../Controller/get_all_lieu.php";
 
       return fetch(url)
         .then(result => result.json())
@@ -218,9 +146,9 @@ function() {
           title: element.reservation_name,
           start: element.date_debut,
           end: element.date_fin,
-          rendering: 'background', // Render as a background event
-          backgroundColor: 'yellow', // Set the background color
-          textColor: 'black'
+          rendering: 'background',
+          backgroundColor: '#ab2346',
+          textColor: 'white',
         }
 
         calendar.addEvent(event)

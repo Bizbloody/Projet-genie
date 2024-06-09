@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         $stmt->close();
-        header("Location: admin.php");
+        header("Location: ../View/admin_dashboard.php");
         exit();
     } else {
         echo "Error updating association: " . $stmt->error;

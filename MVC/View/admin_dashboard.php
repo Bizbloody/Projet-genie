@@ -9,7 +9,7 @@ if ($_SESSION['role'] != 'Admin') {
 
 // Admin-specific functionality here
 include '../Controller/admin.php';
-include '../Controller/get_list.php';
+include '../Controller/get_list_storage.php';
 
 
 ?>
@@ -21,9 +21,9 @@ include '../Controller/get_list.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="css/admin-style.css">
-    <link rel="stylesheet" href="css/header_style.css">
-    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="css/admin_dashboard.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/list_storage.css">
 
 </head>
 <body>

@@ -1,13 +1,7 @@
 <?php
 
-$env = parse_ini_file('../../.env');
+include '../Model/db.php';
 
-$servername = $env["SERVER_NAME"];
-$username = $env["USERNAME"];
-$password = $env["PASSWORD"];
-$dbname = $env["DB_NAME"];
-
-$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];

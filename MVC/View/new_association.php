@@ -9,7 +9,7 @@ include '../Controller/add_association.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Association</title>
-    <link rel="stylesheet" href="../View/css/admin-style.css">
+    <link rel="stylesheet" href="css/admin_dashboard.css">
 </head>
 <body>
 <h1>Add Association</h1>

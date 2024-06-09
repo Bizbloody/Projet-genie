@@ -1,12 +1,15 @@
 <?php
-$env = parse_ini_file('../../.env');
 
-$servername = $env["SERVER_NAME"];
-$username = $env["USERNAME"];
-$password = $env["PASSWORD"];
-$dbname = $env["DB_NAME"];
+function get_all_lieu($conn) {
+    $stmt = $conn->prepare("SELECT * FROM lieu");
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Exécution de la requête
+    $stmt->execute();
+
+    // Récupération du résultat de la requête
+    $result = $stmt->get_result();
+    return $result;
+}
 
 function delete_lieu_by_id($conn, $id) {
     // Préparation de la requête
@@ -27,6 +30,4 @@ function delete_lieu_by_id($conn, $id) {
 
     // Fermeture de la requête
     $stmt->close();
-    header("Location: " . $_SERVER['PHP_SELF']);
-
 }

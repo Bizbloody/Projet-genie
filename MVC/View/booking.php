@@ -21,9 +21,9 @@ if (!isset($_SESSION['ID'])) {
     <script src='../../fullcalendar/core/index.global.js'></script>
     <script src='../../fullcalendar/daygrid/index.global.js'></script>
     <script src='../../fullcalendar/interaction/index.global.js'></script>
-    <link rel="stylesheet" href="css/reservation_style.css">
+    <link rel="stylesheet" href="css/booking.css">
     <link rel="stylesheet" href="css/calendar.css">
-    <link rel="stylesheet" href="css/header_style.css">
+    <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
 
@@ -50,7 +50,7 @@ if (!isset($_SESSION['ID'])) {
         <ul id="placeList"></ul>
       </div>
     </div>
-    <script src='reservation_script.js'></script>
+    <script src='booking.js'></script>
 
 
 </body>

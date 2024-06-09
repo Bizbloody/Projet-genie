@@ -5,18 +5,15 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require '../Model/db.php';
+require '../Model/association_queries.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pseudo = $_POST['pseudo'];
     $mdp = $_POST['mdp'];
 
     // Prepare and execute the query to fetch user data based on the pseudo
-    $stmt = $conn->prepare("SELECT * FROM associations WHERE pseudo = ?");
-    $stmt->bind_param("s", $pseudo);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $result = get_user($conn, $pseudo);
     $user = $result->fetch_assoc();
-
 // Vérifiez le mot de passe
     if ($user && password_verify($mdp, $user['mdp'])) {
         // Stockez les données utilisateur dans la session
@@ -26,10 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Redirigez en fonction du rôle de l'utilisateur
         if ($user['role'] == 'Admin') {
-            header("Location: ../View/admin.php");
+            header("Location: ../View/admin_dashboard.php");
             exit();
         } else {
-            header("Location: ../View/reservation.php");
+            header("Location: ../View/booking.php");
             exit();
         }
     } else {

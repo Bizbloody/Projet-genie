@@ -1,5 +1,5 @@
 <?php
-    
+
     session_status() === PHP_SESSION_ACTIVE ?: session_start();
 
     // Check if the request is a POST request
@@ -17,19 +17,9 @@
             $start = $reservation_data->start;
             $end = $reservation_data->end;
             $lieuId = $reservation_data -> lieuId;
-            
 
-            $env = parse_ini_file('../../.env');
 
-            $servername = $env["SERVER_NAME"];
-            $username = $env["USERNAME"];
-            $password = $env["PASSWORD"];
-            $dbname = $env["DB_NAME"];
-
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            include '../Model/db.php';
 
             $assoID = $_SESSION['ID'];
             //$ID = 5;
@@ -38,13 +28,7 @@
             $status = 'Actif';
 
             $query = "INSERT INTO reservation (ID_association, ID_lieu, date_debut, date_fin, status, reservation_name) VALUES ($assoID, $lieuId, '$start', '$end', '$status', '$name');";
-            echo($query);
             $result = mysqli_query($conn,$query);
-
-            // $stmt1 = $conn->prepare("INSERT INTO reservation (ID_association, ID_lieu, date_debut, date_fin, status, reservation_name) VALUES (?, ?, ?, ?, ?, ?)");
-            // $stmt1->bind_param("ssssss", $assoID, $lieuId, $start, $end, $status, $name);
-            // $stmt1->execute();
-            // $stmt1->close();
 
             // Fermeture de la connexion
             $conn->close();

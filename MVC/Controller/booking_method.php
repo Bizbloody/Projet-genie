@@ -4,8 +4,7 @@ session_status() === PHP_SESSION_ACTIVE ?: session_start();
 
 // QQN connecté ??
 if (!isset($_SESSION['ID'])) {
-    // Rediriger vers la page de connexion
-    header("Location: home.html");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -28,18 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $start = $reservation_data->start;
         $end = $reservation_data->end;
 
-      
-        $env = parse_ini_file('../../.env');
 
-        $servername = $env["SERVER_NAME"];
-        $username = $env["USERNAME"];
-        $password = $env["PASSWORD"];
-        $dbname = $env["DB_NAME"];
+        include '../Model/db.php';
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
         $ID = $_SESSION['ID'];
 
@@ -51,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt1->execute();
         $stmt1->close();
 
-        // Fermeture de la connexion
+        // Close connexion
         $conn->close();
 
         // Return JSON response
@@ -76,18 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo 'console.log("Start Date: ' . $start . '");';
         echo 'console.log("End Date: ' . $end . '");';
         echo '</script>';
-      
-        $env = parse_ini_file('.env');
 
-        $servername = $env["SERVER_NAME"];
-        $username = $env["USERNAME"];
-        $password = $env["PASSWORD"];
-        $dbname = $env["DB_NAME"];
+    include '../Model/db.php';
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
         try {
             $stmt2 = $conn->prepare("SELECT l.ID, l.nom FROM lieu as l INNER JOIN reservation as r on r.ID_lieu = l.ID WHERE r.date_debut >= ? and r.date_fin <= ?");

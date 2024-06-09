@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
-        header("Location: ../View/admin.php");
+        header("Location: ../View/admin_dashboard.php");
         exit();
     } else {
         echo "Error deleting association.";
