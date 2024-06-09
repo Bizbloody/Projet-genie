@@ -9,7 +9,9 @@ header {
     justify-content: flex-start;
     align-items: center;
     z-index: 100;
-
+    background-color: #f9f9f9;
+    margin-left: -20px;
+    margin-top: -20px;
 }
 
 .logo {

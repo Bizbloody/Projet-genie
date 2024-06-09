@@ -5,17 +5,16 @@ body {
     font-family: Arial, sans-serif;
     background: var(--pale-dogwood);
     color: var(--gunmetal);
-    padding: 1% 8%;
 }
 
 #calendar {
-    margin: 1% 5% 0%;
+    margin: 1% 10% 0%;
 }
 
 form#reservationForm {
     display: flex;
     justify-content: flex-end;
-    margin: 0% 5%;
+    margin: 0% 10%;
 }
 
 .spaceBetweenButtons {
@@ -104,7 +103,10 @@ button {
     border-radius: 0.25em;
     text-align: center;
     display: inline-block;
-    margin-right: 232px;
+    margin-right: 285px;
     margin-top: 50px;
-    margin-bottom: -50px;
+}
+
+h1{
+    padding: 1% 8%;
 }

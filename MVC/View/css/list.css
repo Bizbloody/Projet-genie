@@ -6,11 +6,6 @@ body{
     color: var(--gunmetal);
     font-family: Poppins, sans-serif;
 }
-header {
-    background-color: #f9f9f9;
-    margin-left: -20px;
-    margin-top: -20px;
-}
 
 .bandeau{
     padding: 20px 0;
@@ -66,19 +61,7 @@ header {
     align-items: center;
 }
 
-button {
-    width: fit-content;
-    padding: 1rem 2rem;
-    cursor: pointer;
-    color: #fff;
-    font-size: 115%;
-    font-family: 'Gill Sans', sans-serif;
-    border-radius: 1rem;
-    border: none;
-    position: relative;
-    background: #2D3047;
-    transition: 0.1s;
-}
+
 
 
 form{

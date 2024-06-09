@@ -14,14 +14,9 @@ include '../Controller/get_list.php';
 </head>
 
 <body>
-<header class="head">
-    <img src="Logo.png" alt="Logo" class="logo">
-    <nav class="nav">
-        <a href="#" class="active">Home</a>
-        <a href="#">About</a>
-        <a id='connexion' href="#">Connection</a>
-    </nav>
-</header>
+
+<?php include 'header.html'; ?>
+
 <div class="bandeau">
     <div class="bandeau1">Liste des espaces</div>
 </div>
@@ -50,7 +45,7 @@ include '../Controller/get_list.php';
             </div>
         </div>
     <?php endforeach; ?>
-    <a id="add_storage_button" href="new_storage.html">Ajouter un espace</a>
+    <a id="add_storage_button" href="new_storage.php">Ajouter un espace</a>
 
 </div>
 

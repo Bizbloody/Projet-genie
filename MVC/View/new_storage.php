@@ -7,15 +7,11 @@
   <title>Ajouter un espace de stockage</title>
   <script src='new_storage.js'></script>
   <script src="get_associations_name.js"></script>
+    <link rel="stylesheet" href="css/header_style.css">
 </head>
 <body>
 
-<header class="head">
-  <div class="c1">
-    <div class="logo">Stock ISEP</div>
-  </div>
-
-</header>
+<?php include 'header.html'; ?>
 
 <div class="bandeau">
   <div class="bandeau1">Nouvel espace</div>
