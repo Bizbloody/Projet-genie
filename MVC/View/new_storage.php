@@ -4,7 +4,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/new_storage.css">
-  <link rel="stylesheet" href="css/list.css">
   <title>Ajouter un espace de stockage</title>
   <script src='new_storage.js'></script>
   <script src="get_associations_name.js"></script>
@@ -82,7 +81,7 @@
       </div>
       <div class="input">
         <label class="description_label">Description :</label>
-        <div class="box3"><input type="text" name="description_label" class="mail1"></div>
+        <div class="box3"><input type="text" name="description_content" class="mail1"></div>
         <span class="error" id="descriptionError"></span>
       </div>
 

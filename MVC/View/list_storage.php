@@ -44,7 +44,7 @@ include '../Controller/get_list.php';
             </div>
         </div>
     <?php endforeach; ?>
-    <a id="add_storage_button" href="new_storage.html">Ajouter un espace</a>
+    <a id="add_storage_button" href="new_storage.php">Ajouter un espace</a>
 
 </div>
 
