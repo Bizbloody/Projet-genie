@@ -25,10 +25,6 @@ include '../Controller/get_list.php';
         <div class="storage">
             <div class="header_box">
                 <div class="name"><?php echo $storage['nom']; ?></div>
-                <form action="" method="post">
-                    <input type="hidden" name="id_to_delete" value="<?php echo $storage['ID']?>">
-                    <button type="submit" name="delete_button">Supprimer</button>
-                </form>
             </div>
             <hr class="separator">
             <div class="details">
